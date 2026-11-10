@@ -2,241 +2,326 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WhatsApp Monospace Receipt &amp; Invoice Formatter</title>
+<title>Free Invoice Generator – No Login, 100% Free</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Create clean PDF, thermal slip, or WhatsApp invoices in 30 seconds. No login, 100% free, runs privately in your browser.">
+<meta name="theme-color" content="#075E54">
+<meta property="og:title" content="Free Invoice Generator – No Login, 100% Free">
+<meta property="og:description" content="Create clean PDF, thermal slips, or WhatsApp invoices in 30 seconds. Private, free, works offline.">
+<meta property="og:type" content="website">
+<style id="pageStyle"></style>
 <style>
-:root{--bg:#f3f1ea;--card:#fff;--tx:#1b2a26;--mu:#5d6b66;--bd:#d9dfdb;--g:#25D366;--gd:#075E54;--bub:#d9fdd3;--chat:#efe7da;--warn:#fff3cd;--warnt:#664d03;--inp:#fff}
-@media(prefers-color-scheme:dark){:root{--bg:#10181a;--card:#1a2528;--tx:#e6ecea;--mu:#9bb0aa;--bd:#2f4045;--bub:#005c4b;--chat:#0b141a;--warn:#3a2f0b;--warnt:#ffd86b;--inp:#10181a}}
+:root{--g:#25D366;--gd:#075E54;--bg:#f1f5f2;--card:#fff;--tx:#14211c;--mu:#5b6b64;--bd:#d3ded8;--in:#fff;--warn:#fff3cd;--warnt:#664d03;--chat:#e5ddd5;--bub:#dcf8c6}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1411;--card:#16211c;--tx:#e6eee9;--mu:#9bada5;--bd:#2b3b34;--in:#0f1814;--warn:#3a2f0b;--warnt:#ffe08a;--chat:#0b141a;--bub:#005c4b}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-header{background:var(--gd);color:#fff;padding:18px 16px}
-header h1{margin:0;font-size:1.3rem}header p{margin:4px 0 0;opacity:.85;font-size:.95rem}
-main{max-width:1100px;margin:0 auto;padding:14px}
-.grid{display:grid;gap:14px}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr;align-items:start}.sticky{position:sticky;top:12px}}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px}
-h2{font-size:1.1rem;margin:0 0 10px}
-label{display:block;font-size:.85rem;color:var(--mu);margin:8px 0 3px}
-input,select{width:100%;min-height:44px;padding:8px 10px;border:1px solid var(--bd);border-radius:10px;background:var(--inp);color:var(--tx);font:inherit}
-input:focus,select:focus,button:focus-visible{outline:3px solid var(--g);outline-offset:1px}
-.r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.row{display:grid;grid-template-columns:1fr 64px 84px 44px;gap:6px;margin-bottom:6px}
-.row button{padding:0}
-.chk{display:flex;align-items:center;gap:8px;margin:8px 0}.chk input{width:22px;height:22px;min-height:0}.chk label{margin:0;color:var(--tx)}
-button{min-height:44px;padding:8px 14px;border:0;border-radius:10px;background:var(--g);color:#052e1f;font:600 1rem inherit;font-family:inherit;cursor:pointer}
-button.sec{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
-button.red{background:#d93025;color:#fff}button.x{background:transparent;color:#d93025;border:1px solid var(--bd)}
-.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.acts .full{grid-column:1/-1}
-.warn{background:var(--warn);color:var(--warnt);border:2px solid #f0ad00;border-radius:10px;padding:10px 12px;margin-top:12px;font-weight:600;font-size:.92rem}
-.info{background:var(--bub);border-radius:10px;padding:8px 12px;font-size:.88rem;margin-bottom:10px}
-.chat{background:var(--chat);border-radius:12px;padding:14px;overflow-x:auto}
-.bub{display:inline-block;background:var(--bub);border-radius:10px 10px 10px 2px;padding:8px 10px;box-shadow:0 1px 1px rgba(0,0,0,.2)}
-pre{margin:0;font:14px/1.35 "Courier New",Courier,monospace;white-space:pre;color:var(--tx)}
-#dl{display:none;margin-top:8px}#dl.open{display:grid;grid-template-columns:1fr;gap:8px}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 18px;border-radius:24px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:20}.toast.show{opacity:1}
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}.ov.show{display:flex}
-.modal{background:var(--card);border-radius:14px;padding:18px;max-width:420px;width:100%}.modal .acts{grid-template-columns:1fr}
-.how p,.how li{max-width:75ch}.note{background:var(--warn);color:var(--warnt);border-left:5px solid #f0ad00;padding:10px 14px;border-radius:8px;font-weight:600}
-details{border-bottom:1px solid var(--bd);padding:8px 0}summary{cursor:pointer;font-weight:600}
-#printArea{display:none}
-@media print{#app{display:none!important}#printArea{display:block!important;background:#fff;color:#000;margin:0 auto}#printArea pre{color:#000;font-family:"Courier New",Courier,monospace}body{background:#fff}}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+header{background:var(--gd);color:#fff;padding:22px 16px 16px;text-align:center}
+h1{margin:0;font-size:clamp(1.3rem,4.5vw,2rem);line-height:1.2}
+.tag{margin:6px 0 12px;opacity:.9}
+.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.badges span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);padding:5px 12px;border-radius:99px;font-size:.85rem}
+main{max-width:1240px;margin:0 auto;padding:16px;display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:960px){main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}.right{position:sticky;top:12px}.fab{display:none!important}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:16px}
+.card h2{margin:0 0 12px;font-size:1.05rem;color:var(--gd)}
+@media(prefers-color-scheme:dark){.card h2{color:var(--g)}}
+.grid{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+.full{grid-column:1/-1}
+label{display:block;font-size:.82rem;color:var(--mu);margin-bottom:3px}
+input,select,textarea{width:100%;min-height:44px;padding:9px 11px;border:1px solid var(--bd);border-radius:10px;background:var(--in);color:var(--tx);font:inherit}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--g);outline-offset:1px}
+.chk{display:flex;align-items:center;gap:8px;min-height:44px;color:var(--tx);font-size:.92rem;margin:0}
+.chk input{width:20px;min-height:20px;height:20px}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr 44px;gap:6px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px dashed var(--bd)}
+.row input:first-child{grid-column:1/-1}
+.amt{display:flex;align-items:center;justify-content:flex-end;font-weight:700;padding:0 4px;overflow:hidden}
+.x{border:1px solid var(--bd);background:var(--in);color:#c62828;border-radius:10px;min-height:44px;font-size:1rem;cursor:pointer}
+button.b{min-height:46px;padding:0 16px;border:0;border-radius:12px;font:inherit;font-weight:600;cursor:pointer;background:var(--gd);color:#fff}
+button.b.g{background:var(--g);color:#06301f}
+button.b.o{background:transparent;color:var(--tx);border:1px solid var(--bd)}
+button.b.r{background:#c62828}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}.btns .b{flex:1 1 150px}
+.tot{display:flex;justify-content:space-between;padding:4px 0}
+.gt{font-size:1.2rem;font-weight:800;background:rgba(37,211,102,.18);padding:10px 12px;border-radius:10px;margin-top:6px}
+.warn{background:var(--warn);color:var(--warnt);border:1px solid #e0a800;border-radius:12px;padding:12px 14px;font-weight:600;margin:10px 0}
+.info{font-size:.85rem;background:rgba(37,211,102,.12);border-left:4px solid var(--g);padding:8px 12px;border-radius:8px;margin-bottom:12px}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs button{flex:1;min-height:44px;border:1px solid var(--bd);background:var(--in);color:var(--tx);border-radius:10px;font:inherit;font-weight:600;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--gd);color:#fff;border-color:var(--gd)}
+.pane{display:none}.pane.on{display:block}
+.chat{background:var(--chat);padding:16px;border-radius:12px}
+.bubble{background:var(--bub);color:#111;border-radius:10px 10px 0 10px;padding:10px 12px;max-width:100%;overflow-x:auto;width:fit-content;margin-left:auto}
+@media(prefers-color-scheme:dark){.bubble{color:#e9edef}}
+pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
+.sheet{background:#fff;color:#000;overflow-x:auto;border-radius:8px;border:1px solid #ccc}
+.th{background:#fff;color:#000;padding:12px;display:block;width:fit-content;margin:0 auto}
+.a4{background:#fff;color:#000;padding:28px;min-width:520px;font:13px/1.45 Arial,Helvetica,sans-serif}
+.a4 .hd{display:flex;justify-content:space-between;gap:16px;margin-bottom:18px}
+.a4 h2{margin:0 0 4px;font-size:24px;color:#000}.a4 h3{margin:0 0 4px;font-size:22px;letter-spacing:2px;text-align:right;color:#000}
+.a4 .ir{text-align:right}.a4 .bt{margin-bottom:14px}
+.a4 table{width:100%;border-collapse:collapse}
+.a4 th,.a4 td{border:1px solid #444;padding:7px 9px;text-align:left}
+.a4 th{background:#e8e8e8}.a4 tbody tr:nth-child(even){background:#f4f4f4}
+.a4 .n{text-align:right}.a4 tr{break-inside:avoid}
+.a4 .tt{width:60%;margin-left:auto;margin-top:12px}
+.a4 .tt td{border:0;border-bottom:1px solid #ccc;background:none!important}
+.a4 .tt tr.gr td{background:#d9f5e3!important;font-weight:700;font-size:15px;border:1px solid #444}
+.a4 .ft{margin-top:26px;text-align:center;color:#333}.a4 .ft small{display:block;margin-top:4px;color:#555}
+.fab{position:fixed;right:14px;bottom:14px;z-index:20;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+#modal.on{display:flex}
+#modal .box{background:var(--card);border-radius:16px;padding:20px;max-width:440px;width:100%}
+#modal .btns .b{flex:1 1 100%}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 18px;border-radius:99px;z-index:60;display:none}
+.how{max-width:900px;margin:0 auto;padding:0 16px 40px}
+.how p,.how li{margin:0 0 10px}.how h3{margin:18px 0 6px}
+.note{background:var(--warn);color:var(--warnt);border:2px solid #e0a800;border-radius:12px;padding:14px;margin:16px 0}
+#printA4,#printTh{display:none}
+@media print{
+ #app,.fab,#modal,#toast{display:none!important}
+ html,body{background:#fff!important;color:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body.pm-a4 #printA4{display:block}
+ body.pm-a4 #printA4 .a4{padding:0;min-width:0}
+ body.pm-th #printTh{display:block}
+ #printTh pre{font:10px/1.3 "Courier New",monospace;color:#000}
+}
 </style>
-<style id="pageRule"></style>
 </head>
 <body>
 <div id="app">
-<header><h1>WhatsApp Monospace Receipt &amp; Invoice Formatter</h1><p>Make perfectly aligned bills for WhatsApp, print, or download.</p></header>
+<header>
+ <h1>Free Invoice Generator – No Login, 100% Free</h1>
+ <p class="tag">Create clean PDF, thermal slips, or WhatsApp invoices in 30 seconds.</p>
+ <div class="badges"><span>⚡ No Account Needed</span><span>🔒 100% Private (Runs in Browser)</span><span>📱 WhatsApp Ready</span></div>
+</header>
 <main>
-<div class="grid">
-<section class="card" aria-label="Bill details">
-<h2>Bill details</h2>
-<label for="shop">Shop name (optional)</label><input id="shop" maxlength="40" placeholder="My Shop Name">
-<div class="r2"><div><label for="inv">Invoice / bill number</label><input id="inv" placeholder="INV-001"></div>
-<div><label for="date">Date</label><input id="date" type="date"></div></div>
-<div class="chk"><input type="checkbox" id="showInv" checked><label for="showInv">Show invoice number on bill</label></div>
-<div class="r2"><div><label for="cust">Customer name (optional)</label><input id="cust" placeholder="Rahul"></div>
-<div><label for="phone">Customer phone (optional)</label><input id="phone" inputmode="tel" placeholder="9876543210"></div></div>
-<div class="r2"><div><label for="cc">Default country code</label><input id="cc" inputmode="numeric" value="91"></div>
-<div><label for="cur">Currency prefix</label><input id="cur" value="Rs." maxlength="5"></div></div>
-<h2 style="margin-top:16px">Items</h2>
-<div id="items"></div>
-<button class="sec" id="addItem" type="button" style="width:100%" aria-label="Add item">➕ Add Item</button>
-<div class="r2"><div><label for="deliv">Delivery charge</label><input id="deliv" inputmode="decimal" value="0"></div>
-<div><label for="disc">Discount</label><input id="disc" inputmode="decimal" value="0"></div></div>
-<label for="discType">Discount type</label><select id="discType"><option value="flat">Flat amount</option><option value="pct">Percentage (%)</option></select>
-<label for="foot">Thank-you message</label><input id="foot" maxlength="30" value="Thank you for ordering!">
+<section class="left">
+ <div class="card"><h2>Business details</h2>
+  <div class="grid">
+   <div class="full"><label for="bn">Business / Shop name</label><input id="bn" data-b="biz.name" autocomplete="organization"></div>
+   <div><label for="bp">Phone / WhatsApp</label><input id="bp" data-b="biz.phone" inputmode="tel"></div>
+   <div><label for="ba">Address / City (optional)</label><input id="ba" data-b="biz.addr"></div>
+   <div class="full"><label class="chk"><input type="checkbox" data-b="biz.taxOn"> Add Tax / PAN / VAT number</label></div>
+   <div class="full" id="taxWrap" hidden><label for="bt">Tax / PAN / VAT number</label><input id="bt" data-b="biz.tax"></div>
+  </div></div>
+ <div class="card"><h2>Customer details</h2>
+  <div class="grid">
+   <div><label for="cn">Customer name</label><input id="cn" data-b="cust.name"></div>
+   <div><label for="cp">Customer mobile</label><input id="cp" data-b="cust.phone" inputmode="tel"></div>
+   <div><label for="cc">Default country code (for 10-digit numbers)</label><input id="cc" data-b="cust.cc" inputmode="numeric"></div>
+  </div></div>
+ <div class="card"><h2>Invoice details</h2>
+  <div class="grid">
+   <div><label for="in">Invoice no. (editable)</label><input id="in" data-b="meta.inv"></div>
+   <div><label for="dt">Date</label><input id="dt" type="date" data-b="meta.date"></div>
+   <div><label for="cu">Currency symbol</label><select id="cu" data-b="meta.cur"><option>Rs.</option><option>₹</option><option>$</option><option>रु</option></select></div>
+   <div><label class="chk" style="margin-top:20px"><input type="checkbox" data-b="meta.showInv"> Show invoice number on bill</label></div>
+  </div></div>
+ <div class="card"><h2>Items</h2>
+  <div id="rows"></div>
+  <button class="b g" id="add" type="button" aria-label="Add item">+ Add Item</button>
+ </div>
+ <div class="card"><h2>Summary</h2>
+  <div class="grid">
+   <div><label for="sh">Delivery / Shipping</label><input id="sh" data-b="ship" inputmode="decimal" placeholder="0"></div>
+   <div><label for="ds">Discount</label><div style="display:flex;gap:6px"><input id="ds" data-b="disc" inputmode="decimal" placeholder="0"><select id="dty" data-b="dtype" aria-label="Discount type" style="width:96px"><option value="pct">%</option><option value="flat">Flat</option></select></div></div>
+  </div>
+  <div style="margin-top:12px" id="sum"></div>
+ </div>
+ <div class="card"><h2>Send, print or download</h2>
+  <div class="warn" role="alert">⚠️ IMPORTANT: This bill cannot be recovered once cleared! Please Download or Print your bill before clearing it or closing this page. After you clear it, the bill will be gone permanently.</div>
+  <div class="btns"><button class="b g" id="bSend" type="button" aria-label="Send via WhatsApp">📲 Send via WhatsApp</button><button class="b o" id="bCopy" type="button" aria-label="Copy text">📋 Copy Text</button></div>
+  <div class="btns"><button class="b" id="bA4" type="button" aria-label="Print or save as PDF">🖨️ Print / Save as PDF</button></div>
+  <div class="btns"><div style="flex:1 1 150px;display:flex;align-items:center;gap:8px"><label for="pw" style="margin:0;white-space:nowrap">Paper width</label><select id="pw" data-b="paper"><option value="58">58mm</option><option value="80">80mm</option></select></div><button class="b" id="bTh" type="button" aria-label="Print thermal slip">🧾 Print Thermal Slip</button></div>
+  <div class="btns"><button class="b o" id="dImg" type="button">⬇️ Image (PNG)</button><button class="b o" id="dTxt" type="button">⬇️ Text (.txt)</button><button class="b o" id="dPdf" type="button">⬇️ PDF</button></div>
+  <div class="btns"><button class="b r" id="bClear" type="button">🗑️ Clear / New Invoice</button></div>
+ </div>
 </section>
-
-<section class="card sticky" aria-label="Preview and actions">
-<h2>Live preview</h2>
-<div class="info">Triple backticks make WhatsApp show text in monospace so columns stay aligned.</div>
-<div class="chat"><div class="bub"><pre id="preview" aria-live="polite"></pre></div></div>
-<div class="warn" role="alert">⚠️ IMPORTANT: This bill cannot be recovered once cleared! Please Download or Print your bill before clearing it or closing this page. After you clear it, the bill will be gone permanently.</div>
-<div class="acts">
-<button id="bCopy" type="button" aria-label="Copy text">📋 Copy Text</button>
-<button id="bWa" type="button" aria-label="Send on WhatsApp">💬 Send on WhatsApp</button>
-<button id="bPrint" class="sec" type="button" aria-label="Print bill">🖨️ Print Bill</button>
-<button id="bDl" class="sec" type="button" aria-label="Download bill options" aria-expanded="false">⬇️ Download Bill</button>
-</div>
-<div id="dl"><button class="sec" id="dPng" type="button">🖼️ Download as Image (PNG)</button><button class="sec" id="dTxt" type="button">📄 Download as Text (.txt)</button><button class="sec" id="dPdf" type="button">📕 Download as PDF</button></div>
-<label for="paper">Paper size for printing</label>
-<select id="paper"><option value="58">58mm (thermal)</option><option value="80" selected>80mm (thermal)</option><option value="a4">A4</option></select>
-<div class="acts"><button id="bClear" class="red full" type="button" aria-label="Clear and start a new receipt">🗑️ Clear / New Receipt</button></div>
-</section>
-</div>
-
-<section class="card how" style="margin-top:14px" aria-label="How to use">
-<h2>How Does This Tool Work? (How to Use)</h2>
-<p><b>Why normal spaces do not align in WhatsApp.</b> WhatsApp normally uses a proportional font, where every letter has a different width. An "i" is narrow and an "m" is wide, so ten spaces never line up the same way on two different lines. Text wrapped in triple backticks (```) switches WhatsApp to a monospace font, where every character is exactly the same width. This tool pads each column to a fixed number of characters, so inside the backticks the table looks straight and neat.</p>
-<ol>
-<li><b>Step 1 – Shop and customer.</b> Type your shop name once; it is remembered. The invoice number is editable: type any number or text such as INV-001 or 1025, or keep the suggested next number. Turn off "Show invoice number on bill" if you do not want it printed. Customer name and phone are optional, but a phone number lets you send the bill straight to that customer.</li>
-<li><b>Step 2 – Items.</b> Each row has an item name, a quantity, and a rate (price for one unit). Tap "Add Item" to add a new row. Tap the X button to remove a row; at least one row always stays. Rows with no item name are ignored.</li>
-<li><b>Step 3 – Delivery and discount.</b> Enter a delivery charge if you have one. Enter a discount and choose whether it is a flat amount or a percentage. The total is: subtotal (quantity × rate for every item) minus the discount, plus delivery. A discount can never be more than the subtotal, and a negative discount is treated as zero.</li>
-<li><b>Step 4 – Live preview.</b> The preview updates as you type. The width is fixed at 30 characters so every line fits a standard mobile screen without wrapping. Long item names continue on the next line.</li>
-<li><b>Step 5 – Copy or send.</b> Tap "Copy Text" and paste into any WhatsApp chat; the backticks are included automatically, so do not edit them. Or tap "Send on WhatsApp". If a phone number is entered, that customer's chat opens directly (a 10-digit number gets the country code added). If not, WhatsApp lets you choose a contact.</li>
-<li><b>Step 6 – Print.</b> Tap "Print Bill" to print only the receipt, in a black monospace font with no backticks. Choose 58mm, 80mm, or A4 first. To save a PDF, pick "Save as PDF" as the printer in the print dialog.</li>
-<li><b>Step 7 – Download.</b> "Download Bill" lets you save a sharp PNG image (great for WhatsApp), a plain text file, or a PDF (through the print dialog). Files are named Invoice-number-customer-date.</li>
-<li><b>Step 8 – Clear / New Receipt.</b> Clears the items, customer, discount and delivery, keeps your shop name, and moves the invoice number forward by one. You are asked to confirm first.</li>
-</ol>
-<p class="note">Important Note: This bill cannot be recovered once cleared, so please Download or Print it before clearing. If you clear your browser data or switch to a different device, old bills will not be available.</p>
-<h2 style="margin-top:16px">FAQ</h2>
-<details><summary>Is my data saved on the internet?</summary><p>No, everything stays in your own browser. There is no server.</p></details>
-<details><summary>Will this work offline?</summary><p>Yes, once the page is saved or loaded, it works without internet.</p></details>
-<details><summary>Why should I avoid emojis in the bill?</summary><p>Emojis are wider than normal characters and break the column alignment. This tool removes them from the receipt.</p></details>
-<details><summary>Why does the alignment look wrong in WhatsApp?</summary><p>Make sure the triple backticks at the start and end of the message were not removed or edited, and that you copied the full text.</p></details>
+<section class="right" id="preview">
+ <div class="card"><h2>Live preview</h2>
+  <div class="tabs" role="tablist">
+   <button role="tab" aria-selected="true" data-t="wa">WhatsApp</button>
+   <button role="tab" aria-selected="false" data-t="a4">A4 Invoice</button>
+   <button role="tab" aria-selected="false" data-t="th">Thermal Slip</button>
+  </div>
+  <div class="info">Triple backticks make WhatsApp show text in monospace so columns stay aligned.</div>
+  <div class="pane on" id="p-wa"><div class="chat"><div class="bubble"><pre id="pvWa"></pre></div></div></div>
+  <div class="pane" id="p-a4"><div class="sheet" id="pvA4"></div></div>
+  <div class="pane" id="p-th"><div class="sheet"><div class="th"><pre id="pvTh"></pre></div></div></div>
+ </div>
 </section>
 </main>
+<button class="b g fab" id="fab" type="button" aria-label="Go to preview">👁️ Preview</button>
+
+<section class="how card" style="max-width:900px;margin:0 auto 40px">
+ <h2 style="font-size:1.4rem">How Does This Tool Work? (How to Use)</h2>
+ <h3>Why does WhatsApp need triple backticks?</h3>
+ <p>WhatsApp normally shows messages in a font where every letter has a different width, so spaces you type never line up into straight columns. When you wrap text in three backticks (```) at the start and end, WhatsApp switches that part of the message to a monospace font, where every character is exactly the same width. That is why the table in this tool looks straight and neat after you send it.</p>
+ <ol>
+  <li><b>Step 1 – Fill in the details.</b> <p>Type your business name, phone number and optional address. If you need a tax number, turn on “Add Tax / PAN / VAT number” and a new box appears. Business details are saved in your browser and fill in automatically next time. The invoice number is created for you (like #INV-101), but you can click it and type any number or text. Pick a date, choose your currency symbol, and enter the customer’s name and mobile number. You can switch off “Show invoice number on bill” if you do not want it printed.</p></li>
+  <li><b>Step 2 – Add items.</b> <p>Write a description, quantity (Qty) and Rate for each item. The Amount is worked out automatically as Qty × Rate. Press “+ Add Item” for a new row, and press the X button to remove a row. At least one row always stays. Empty rows are ignored on the bill.</p></li>
+  <li><b>Step 3 – Delivery and discount.</b> <p>Enter a delivery charge if there is one. For a discount, choose “%” for a percentage or “Flat” for a fixed amount. The Grand Total is: Subtotal − Discount + Delivery. A discount can never be negative or larger than the subtotal.</p></li>
+  <li><b>Step 4 – Live preview.</b> <p>The preview updates as you type and has three tabs: WhatsApp, A4 Invoice and Thermal Slip. The WhatsApp text is fixed at 30 characters wide because that fits comfortably on most phone screens without wrapping, which would break the columns.</p></li>
+  <li><b>Step 5 – Format A (WhatsApp).</b> <p>Tap “Send via WhatsApp” to open WhatsApp with the bill ready to send. If the customer number has 10 digits, the country code from the box above is added. If there is no number, WhatsApp lets you pick a contact. Or tap “Copy Text” and paste it into any chat. Do not delete the backticks.</p></li>
+  <li><b>Step 6 – Format B (A4).</b> <p>Tap “Print / Save as PDF”. Only the clean A4 invoice is shown in the print dialog. Choose your printer, or choose “Save as PDF” as the destination to get a PDF file.</p></li>
+  <li><b>Step 7 – Format C (Thermal).</b> <p>Pick 58mm or 80mm paper width, then tap “Print Thermal Slip”. In the print dialog select your thermal printer, set the paper size to match (58mm or 80mm), set margins to none, and turn off “Headers and footers”.</p></li>
+  <li><b>Step 8 – Download.</b> <p>Use the Image button for a PNG picture, Text for a .txt file, or PDF to open the print dialog and save as PDF. File names look like Invoice-INV-101-Rahul-2026-11-10.</p></li>
+  <li><b>Step 9 – Clear / New Invoice.</b> <p>This empties the items, customer, discount and delivery, keeps your business details, and moves the invoice number forward (INV-101 becomes INV-102). You will be asked to confirm first.</p></li>
+ </ol>
+ <div class="note"><b>Important Note:</b> This bill cannot be recovered once cleared, so please Download or Print it before clearing. If you clear your browser data or switch to a different device, old bills will not be available.</div>
+ <h3>FAQ</h3>
+ <p><b>Is my data saved on the internet?</b><br>No, everything stays in your own browser. There is no server and no login.</p>
+ <p><b>Will this work offline?</b><br>Yes, once the page is loaded or saved, it works without internet.</p>
+ <p><b>Why should I avoid emojis in the bill?</b><br>Emojis are wider than normal characters and break column alignment.</p>
+ <p><b>Why does the alignment look wrong in WhatsApp?</b><br>Make sure the triple backticks at the start and end were not removed, and that you copied the full text.</p>
+</section>
 </div>
 
-<div id="printArea"><pre id="printPre"></pre></div>
-<div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="modal">
-<p id="mt"><b>⚠️ This bill cannot be recovered after clearing. Have you already downloaded or printed it?</b></p>
-<div class="acts"><button id="mDl" class="sec" type="button">Download First</button><button id="mPr" class="sec" type="button">Print First</button><button id="mYes" class="red" type="button">Yes, Clear Anyway</button><button id="mNo" class="sec" type="button">Cancel</button></div>
+<div id="printA4"></div><div id="printTh"><pre id="prTh"></pre></div>
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="box">
+ <p id="mt" style="font-weight:700;font-size:1.05rem">⚠️ This bill cannot be recovered after clearing. Have you already downloaded or printed it?</p>
+ <div class="btns"><button class="b g" id="mDl" type="button">Download First</button><button class="b" id="mPr" type="button">Print First</button><button class="b r" id="mYes" type="button">Yes, Clear Anyway</button><button class="b o" id="mNo" type="button">Cancel</button></div>
 </div></div>
-<div class="toast" id="toast" role="status"></div>
+<div id="toast" role="status"></div>
 
 <script>
-(function(){
 'use strict';
-var W=30,NW=16,QW=4,AW=10,KEY='wmrf_state',SHOP='wmrf_shop',LAST='wmrf_lastInv';
-var $=function(id){return document.getElementById(id)};
-var dirty=false;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const KEY='free_invoice_gen_v1';
+let S, saved=true;
 
 /* ---------- helpers ---------- */
-function padEnd(s,n){return String(s).padEnd(n,' ')}
-function padStart(s,n){return String(s).padStart(n,' ')}
-function clean(s){return String(s==null?'':s).replace(/[^\x20-\x7E]/g,'').replace(/\s+/g,' ').trim()}
-function num(v){var n=parseFloat(v);return isFinite(n)?n:0}
-function fmtN(n){return (Math.round(n*100)/100).toFixed(2).replace(/\.00$/,'')}
-function center(s){s=s.slice(0,W);return ' '.repeat(Math.floor((W-s.length)/2))+s}
-function line(l,r){var sp=W-l.length-r.length;return sp<1?l+' '+r:l+' '.repeat(sp)+r}
-var SEP='-'.repeat(W);
-/* wrap text into chunks of n chars, breaking at spaces when possible */
-function wrapText(s,n){var out=[];s=s.trim();while(s.length>n){var c=s.lastIndexOf(' ',n);if(c<=0)c=n;out.push(s.slice(0,c).trimEnd());s=s.slice(c).trimStart()}out.push(s);return out}
-function fmtDate(v){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v||'');if(!m)return clean(v);
- return m[3]+'-'+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m[2]-1]+'-'+m[1]}
-function todayISO(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
-function nextInv(s){s=String(s||'').trim();if(!s)return 'INV-001';
- var m=/(\d+)(?!.*\d)/.exec(s);if(!m)return s+'-1';
- var n=String(+m[1]+1).padStart(m[1].length,'0');return s.slice(0,m.index)+n+s.slice(m.index+m[1].length)}
+const num=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?n:0};
+const fmt=n=>{n=Math.round((Number(n)||0)*100)/100;return Number.isInteger(n)?String(n):n.toFixed(2)};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const padEnd=(s,n)=>String(s).length>=n?String(s):String(s)+' '.repeat(n-String(s).length);
+const padStart=(s,n)=>String(s).length>=n?String(s):' '.repeat(n-String(s).length)+String(s);
+const center=(s,w)=>s.length>=w?s:' '.repeat(Math.floor((w-s.length)/2))+s;
+const pad2=n=>String(n).padStart(2,'0');
+const todayISO=()=>{const d=new Date();return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate())};
+function fmtDate(iso){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(iso||'');if(!m)return iso||'';return m[3]+'-'+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m[2]-1]+'-'+m[1]}
+/* Break text into lines of max w chars: at spaces when possible, hard-split very long words */
+function wrapText(s,w){s=String(s||'').trim();if(!s)return[''];const out=[];let cur='';
+ for(let word of s.split(/\s+/)){while(word.length>w){if(cur){out.push(cur);cur=''}out.push(word.slice(0,w));word=word.slice(w)}
+  if(!cur)cur=word;else if((cur+' '+word).length<=w)cur+=' '+word;else{out.push(cur);cur=word}}
+ if(cur)out.push(cur);return out}
+const nextInv=s=>/\d/.test(s)?s.replace(/(\d+)(?!.*\d)/,m=>String(+m+1).padStart(m.length,'0')):'#INV-101';
+const tpath=(o,p,v)=>{const k=p.split('.');while(k.length>1)o=o[k.shift()];if(v===undefined)return o[k[0]];o[k[0]]=v};
 
-/* ---------- items UI ---------- */
-function addRow(name,qty,price){
- var d=document.createElement('div');d.className='row';
- d.innerHTML='<input class="in" placeholder="Item name" aria-label="Item name"><input class="iq" inputmode="decimal" aria-label="Quantity" placeholder="Qty"><input class="ip" inputmode="decimal" aria-label="Rate" placeholder="Rate"><button type="button" class="x" aria-label="Remove item">✕</button>';
- d.children[0].value=name||'';d.children[1].value=qty==null?'1':qty;d.children[2].value=price||'';
- d.children[3].onclick=function(){if($('items').children.length>1){d.remove();update()}else{d.children[0].value='';d.children[1].value='1';d.children[2].value='';update()}};
- $('items').appendChild(d)}
-function getItems(){return Array.prototype.map.call($('items').children,function(r){return{name:r.children[0].value,qty:r.children[1].value,price:r.children[2].value}})}
+/* ---------- state ---------- */
+const defaults=()=>({biz:{name:'',phone:'',addr:'',tax:'',taxOn:false},cust:{name:'',phone:'',cc:'91'},meta:{inv:'#INV-101',showInv:true,date:todayISO(),cur:'Rs.'},items:[{d:'',q:'',r:''}],ship:'',disc:'',dtype:'pct',paper:'58'});
+function saveState(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function loadState(){const d=defaults();try{const r=JSON.parse(localStorage.getItem(KEY)||'null');if(r){for(const k of ['biz','cust','meta'])Object.assign(d[k],r[k]||{});['ship','disc','dtype','paper'].forEach(k=>{if(r[k]!==undefined)d[k]=r[k]});if(Array.isArray(r.items)&&r.items.length)d.items=r.items}}catch(e){}return d}
 
 /* ---------- calculations ---------- */
-function calculateTotals(items,disc,type,deliv){
- var sub=0,rows=[];
- items.forEach(function(it){var n=clean(it.name);if(!n)return;var q=Math.max(0,num(it.qty)),p=Math.max(0,num(it.price));var a=q*p;sub+=a;rows.push({name:n,qty:q,amt:a})});
- var d=Math.max(0,num(disc));if(type==='pct')d=sub*Math.min(d,100)/100;d=Math.min(d,sub);
- var dv=Math.max(0,num(deliv));
- return{rows:rows,sub:sub,disc:d,deliv:dv,total:Math.max(0,sub-d+dv)}}
+function calculateTotals(){
+ const rows=S.items.filter(i=>i.d.trim()||String(i.q).trim()||String(i.r).trim()).map(i=>{const q=String(i.q).trim()===''?1:num(i.q),r=num(i.r);return{d:i.d.trim()||'Item',q,r,a:q*r}});
+ const sub=rows.reduce((s,r)=>s+r.a,0);
+ let dv=Math.max(0,num(S.disc));dv=S.dtype==='pct'?sub*Math.min(dv,100)/100:Math.min(dv,Math.max(sub,0));
+ const ship=Math.max(0,num(S.ship));
+ return{rows,sub,dv,ship,total:sub-dv+ship}}
 
-/* ---------- receipt text ---------- */
-function formatReceipt(withTicks){
- var cur=clean($('cur').value),t=calculateTotals(getItems(),$('disc').value,$('discType').value,$('deliv').value);
- var M=function(n){return cur+fmtN(n)},L=[];
- var shop=clean($('shop').value);
- if(shop){wrapText(shop.toUpperCase(),W).forEach(function(s){L.push(center(s))});L.push(SEP)}
- var inv=clean($('inv').value);if($('showInv').checked&&inv)L.push(('Invoice No: '+inv).slice(0,W));
- var c=clean($('cust').value);if(c)wrapText('Customer: '+c,W).forEach(function(s){L.push(s)});
- var ph=clean($('phone').value);if(ph)L.push(('Phone: '+ph).slice(0,W));
- var dt=fmtDate($('date').value);if(dt)L.push('Date: '+dt);
- L.push(SEP,padEnd('ITEM',NW)+padStart('QTY',QW)+padStart('TOTAL',AW),SEP);
- if(!t.rows.length)L.push(center('(no items yet)'));
- t.rows.forEach(function(r){var w=wrapText(r.name,NW);
-  L.push(padEnd(w[0],NW)+padStart(fmtN(r.qty),QW)+padStart(M(r.amt),AW));
-  for(var i=1;i<w.length;i++)L.push(w[i])});
- L.push(SEP,line('Subtotal:',M(t.sub)));
- if(t.disc>0)L.push(line($('discType').value==='pct'?'Discount ('+fmtN(num($('disc').value))+'%):':'Discount:','-'+M(t.disc)));
- if(t.deliv>0)L.push(line('Delivery:',M(t.deliv)));
- L.push(SEP,line('TOTAL PAYABLE:',M(t.total)),SEP);
- var f=clean($('foot').value);if(f)wrapText(f,W).forEach(function(s){L.push(center(s))});
- var txt=L.join('\n');return withTicks?'```\n'+txt+'\n```':txt}
+/* ---------- text receipts ---------- */
+function formatThermalText(W){
+ const t=calculateTotals(),c=S.meta.cur,b=S.biz,sep='-'.repeat(W),L=[];
+ const amts=t.rows.map(r=>c+fmt(r.a)),qs=t.rows.map(r=>fmt(r.q));
+ const aW=Math.max(10,...amts.map(x=>x.length+1)),qW=Math.max(4,...qs.map(x=>x.length+1)),nW=Math.max(8,W-qW-aW);
+ const cen=s=>wrapText(s,W).forEach(x=>L.push(center(x,W)));
+ cen((b.name||'YOUR BUSINESS').toUpperCase());
+ if(b.addr.trim())cen(b.addr);if(b.phone.trim())cen('Tel: '+b.phone);if(b.taxOn&&b.tax.trim())cen('Tax/PAN/VAT: '+b.tax);
+ L.push(sep);
+ if(S.meta.showInv&&S.meta.inv.trim())wrapText('Invoice No: '+S.meta.inv.trim(),W).forEach(x=>L.push(x));
+ if(S.cust.name.trim())wrapText('Customer: '+S.cust.name.trim(),W).forEach(x=>L.push(x));
+ if(S.cust.phone.trim())L.push('Mobile: '+S.cust.phone.trim());
+ if(S.meta.date)L.push('Date: '+fmtDate(S.meta.date));
+ L.push(sep,padEnd('ITEM',nW)+padStart('QTY',qW)+padStart('TOTAL',aW),sep);
+ t.rows.forEach((r,i)=>{const ls=wrapText(r.d,nW);L.push(padEnd(ls[0],nW)+padStart(qs[i],qW)+padStart(amts[i],aW));ls.slice(1).forEach(x=>L.push(x))});
+ L.push(sep);
+ const row=(a,b2)=>a+' '.repeat(Math.max(1,W-a.length-b2.length))+b2;
+ L.push(row('Subtotal:',c+fmt(t.sub)));
+ if(t.dv>0)L.push(row('Discount:','-'+c+fmt(t.dv)));
+ if(t.ship>0)L.push(row('Delivery:',c+fmt(t.ship)));
+ L.push(sep,row('TOTAL PAYABLE:',c+fmt(t.total)),sep);
+ cen('Thank you for ordering!');
+ return L.join('\n')}
+const formatWhatsAppText=()=>'```\n'+formatThermalText(30)+'\n```';
 
-/* ---------- state / render ---------- */
-function hasData(){return getItems().some(function(i){return clean(i.name)})}
-function save(){try{
- var s={inv:$('inv').value,showInv:$('showInv').checked,cust:$('cust').value,phone:$('phone').value,cc:$('cc').value,cur:$('cur').value,date:$('date').value,deliv:$('deliv').value,disc:$('disc').value,discType:$('discType').value,foot:$('foot').value,paper:$('paper').value,items:getItems()};
- localStorage.setItem(KEY,JSON.stringify(s));localStorage.setItem(SHOP,$('shop').value);localStorage.setItem(LAST,$('inv').value)}catch(e){}}
-function load(){var s=null;try{s=JSON.parse(localStorage.getItem(KEY));$('shop').value=localStorage.getItem(SHOP)||''}catch(e){}
- if(s){['inv','cust','phone','cc','cur','date','deliv','disc','discType','foot','paper'].forEach(function(k){if(s[k]!=null)$(k).value=s[k]});$('showInv').checked=s.showInv!==false;
-  (s.items&&s.items.length?s.items:[{}]).forEach(function(i){addRow(i.name,i.qty,i.price)})}
- else addRow();
- if(!$('date').value)$('date').value=todayISO();
- if(!$('inv').value)$('inv').value='INV-001'}
-function applyPaper(){var p=$('paper').value,w=p==='a4'?'90mm':p+'mm',fs=p==='58'?'8pt':p==='80'?'11pt':'14pt';
- $('pageRule').textContent='@page{size:'+(p==='a4'?'A4':p+'mm auto')+';margin:'+(p==='a4'?'15mm':'2mm')+'}@media print{#printArea{width:'+w+'}#printPre{font-size:'+fs+';line-height:1.3}}'}
-function update(markDirty){$('preview').textContent=formatReceipt(false);$('printPre').textContent=formatReceipt(false);applyPaper();save();
- if(markDirty!==false)dirty=true}
+/* ---------- A4 ---------- */
+function renderA4Invoice(){
+ const t=calculateTotals(),c=S.meta.cur,b=S.biz;
+ const rows=t.rows.map(r=>`<tr><td>${esc(r.d)}</td><td class="n">${fmt(r.q)}</td><td class="n">${esc(c)}${fmt(r.r)}</td><td class="n">${esc(c)}${fmt(r.a)}</td></tr>`).join('')||'<tr><td colspan="4" style="text-align:center">No items added yet</td></tr>';
+ const tr=(l,v,cl)=>`<tr${cl?` class="${cl}"`:''}><td>${l}</td><td class="n">${v}</td></tr>`;
+ return `<div class="a4"><div class="hd"><div><h2>${esc(b.name||'Your Business Name')}</h2>${b.addr.trim()?`<div>${esc(b.addr)}</div>`:''}${b.phone.trim()?`<div>Phone: ${esc(b.phone)}</div>`:''}${b.taxOn&&b.tax.trim()?`<div>Tax/PAN/VAT: ${esc(b.tax)}</div>`:''}</div>
+ <div class="ir"><h3>INVOICE</h3>${S.meta.showInv&&S.meta.inv.trim()?`<div>No: ${esc(S.meta.inv)}</div>`:''}${S.meta.date?`<div>Date: ${fmtDate(S.meta.date)}</div>`:''}</div></div>
+ ${S.cust.name.trim()||S.cust.phone.trim()?`<div class="bt"><b>Bill To</b><br>${S.cust.name.trim()?esc(S.cust.name):''}${S.cust.phone.trim()?`<br>Mobile: ${esc(S.cust.phone)}`:''}</div>`:''}
+ <table><thead><tr><th>Description</th><th class="n">Qty</th><th class="n">Rate</th><th class="n">Amount</th></tr></thead><tbody>${rows}</tbody></table>
+ <table class="tt">${tr('Subtotal',esc(c)+fmt(t.sub))}${t.dv>0?tr('Discount','-'+esc(c)+fmt(t.dv)):''}${t.ship>0?tr('Delivery',esc(c)+fmt(t.ship)):''}${tr('Grand Total',esc(c)+fmt(t.total),'gr')}</table>
+ <div class="ft">Thank you for your business!<small>This is a computer-generated invoice.</small></div></div>`}
 
-/* ---------- toast ---------- */
-var tt;function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('show')},2000)}
+/* ---------- UI render ---------- */
+function renderRows(){
+ const c=S.meta.cur;
+ $('#rows').innerHTML=S.items.map((it,i)=>`<div class="row" data-i="${i}"><input data-f="d" aria-label="Item description" placeholder="Item description" value="${esc(it.d)}"><input data-f="q" inputmode="decimal" aria-label="Quantity" placeholder="Qty" value="${esc(it.q)}"><input data-f="r" inputmode="decimal" aria-label="Rate" placeholder="Rate" value="${esc(it.r)}"><output class="amt" aria-label="Amount"></output><button class="x" type="button" data-rm="${i}" aria-label="Remove item ${i+1}">✕</button></div>`).join('');
+ refreshAmts()}
+function refreshAmts(){const c=S.meta.cur;$$('#rows .row').forEach((r,i)=>{const it=S.items[i];r.querySelector('.amt').textContent=(it.q===''&&it.r==='')?'':c+fmt((String(it.q).trim()===''?1:num(it.q))*num(it.r))})}
+function update(){
+ const t=calculateTotals(),c=S.meta.cur;
+ $('#taxWrap').hidden=!S.biz.taxOn;
+ $('#sum').innerHTML=`<div class="tot"><span>Subtotal</span><b>${esc(c)}${fmt(t.sub)}</b></div>`+(t.dv>0?`<div class="tot"><span>Discount</span><b>-${esc(c)}${fmt(t.dv)}</b></div>`:'')+(t.ship>0?`<div class="tot"><span>Delivery</span><b>${esc(c)}${fmt(t.ship)}</b></div>`:'')+`<div class="tot gt"><span>Grand Total</span><span>${esc(c)}${fmt(t.total)}</span></div>`;
+ $('#pvWa').textContent=formatWhatsAppText();
+ const a4=renderA4Invoice();$('#pvA4').innerHTML=a4;$('#printA4').innerHTML=a4;
+ const W=S.paper==='80'?42:32,th=formatThermalText(W);
+ $('#pvTh').textContent=th;$('#prTh').textContent=th;
+ refreshAmts();saveState()}
+function syncInputs(){$$('[data-b]').forEach(el=>{const v=tpath(S,el.dataset.b);if(el.type==='checkbox')el.checked=!!v;else el.value=v})}
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display='none',2000)}
+const hasData=()=>S.items.some(i=>i.d.trim()||String(i.q).trim()||String(i.r).trim())||S.cust.name.trim()||S.cust.phone.trim()||num(S.ship)||num(S.disc);
 
 /* ---------- actions ---------- */
-function copyToClipboard(){var txt=formatReceipt(true);
- function fb(){var a=document.createElement('textarea');a.value=txt;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}a.remove();toast(ok?'Copied!':'Copy failed. Please select the text manually.')}
- if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){toast('Copied!')},fb);else fb()}
-function sendToWhatsApp(){var d=$('phone').value.replace(/\D/g,''),cc=$('cc').value.replace(/\D/g,'')||'91';
- if(d.length===10)d=cc+d;
- window.open('https://wa.me/'+d+'?text='+encodeURIComponent(formatReceipt(true)),'_blank','noopener')}
-function printReceipt(){update(false);dirty=false;window.print()}
-function fileBase(){var p=function(s){return clean(s).replace(/[^A-Za-z0-9._-]+/g,'_').replace(/^_+|_+$/g,'')};
- return ['Invoice',p($('inv').value)||'NA',p($('cust').value),p(fmtDate($('date').value))].filter(Boolean).join('-')}
-function saveBlobUrl(url,name){var a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove()}
-function downloadAsText(){var u=URL.createObjectURL(new Blob([formatReceipt(false)],{type:'text/plain'}));saveBlobUrl(u,fileBase()+'.txt');setTimeout(function(){URL.revokeObjectURL(u)},1000);dirty=false;toast('Text file downloaded')}
-function downloadAsImage(){var lines=formatReceipt(false).split('\n'),fs=18,lh=24,pad=24,sc=Math.max(2,window.devicePixelRatio||1),font=fs+'px "Courier New",Courier,monospace';
- var c=document.createElement('canvas'),x=c.getContext('2d');x.font=font;var cw=x.measureText('M').width,w=Math.ceil(cw*W+pad*2),h=lines.length*lh+pad*2;
- c.width=w*sc;c.height=h*sc;x=c.getContext('2d');x.scale(sc,sc);x.fillStyle='#fff';x.fillRect(0,0,w,h);x.fillStyle='#000';x.font=font;x.textBaseline='top';
- lines.forEach(function(l,i){x.fillText(l,pad,pad+i*lh)});
- saveBlobUrl(c.toDataURL('image/png'),fileBase()+'.png');dirty=false;toast('Image downloaded')}
-function downloadAsPDF(){toast('Choose "Save as PDF" in the print dialog');setTimeout(printReceipt,400)}
-function toggleDl(open){var d=$('dl');var o=open===undefined?!d.classList.contains('open'):open;d.classList.toggle('open',o);$('bDl').setAttribute('aria-expanded',o)}
-function showClearModal(){$('ov').classList.add('show');$('mNo').focus()}
-function hideModal(){$('ov').classList.remove('show')}
-function clearReceipt(){var next=nextInv($('inv').value);$('items').innerHTML='';addRow();
- ['cust','phone'].forEach(function(k){$(k).value=''});$('deliv').value='0';$('disc').value='0';$('discType').value='flat';
- $('inv').value=next;$('date').value=todayISO();dirty=false;update(false);toast('New receipt ready')}
+function fileName(){const p=[S.meta.inv.replace('#','').trim()||'Invoice-No',S.cust.name.trim(),S.meta.date].filter(Boolean).join('-');return 'Invoice-'+p.replace(/[^\w\-.]+/g,'_').replace(/_+/g,'_')}
+function copyToClipboard(text){
+ const fb=()=>{const ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}ta.remove();toast(ok?'Copied!':'Copy failed. Select the text in the preview and copy it manually.')};
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(()=>toast('Copied!'),fb);else fb()}
+function sendToWhatsApp(){
+ let p=S.cust.phone.replace(/\D/g,'');const cc=S.cust.cc.replace(/\D/g,'')||'91';if(p.length===10)p=cc+p;
+ window.open(`https://wa.me/${p}?text=${encodeURIComponent(formatWhatsAppText())}`,'_blank','noopener')}
+function doPrint(mode,css){$('#pageStyle').textContent=css;document.body.classList.remove('pm-a4','pm-th');document.body.classList.add('pm-'+mode);saved=true;setTimeout(()=>window.print(),60)}
+const printA4=()=>doPrint('a4','@page{size:A4;margin:12mm}');
+function printThermal(){const w=S.paper==='80'?'80mm':'58mm';doPrint('th',`@page{size:${w} auto;margin:2mm}#printTh pre{width:${S.paper==='80'?42:32}ch}`)}
+function dl(href,name){const a=document.createElement('a');a.href=href;a.download=name;document.body.appendChild(a);a.click();a.remove();saved=true}
+function downloadAsText(){const u=URL.createObjectURL(new Blob([formatThermalText(30)],{type:'text/plain'}));dl(u,fileName()+'.txt');setTimeout(()=>URL.revokeObjectURL(u),1000)}
+function downloadAsImage(){
+ const lines=formatThermalText(30).split('\n'),f='15px "Courier New",Consolas,"Noto Sans Devanagari",Mangal,monospace',lh=20,pad=24,dpr=window.devicePixelRatio||1;
+ const cv=document.createElement('canvas'),ctx=cv.getContext('2d');ctx.font=f;
+ const w=Math.ceil(Math.max(...lines.map(l=>ctx.measureText(l).width)))+pad*2,h=lines.length*lh+pad*2;
+ cv.width=w*dpr;cv.height=h*dpr;ctx.scale(dpr,dpr);ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);ctx.fillStyle='#000';ctx.font=f;ctx.textBaseline='top';
+ lines.forEach((l,i)=>ctx.fillText(l,pad,pad+i*lh+3));dl(cv.toDataURL('image/png'),fileName()+'.png')}
+const downloadAsPDF=printA4;
+function showClearModal(){$('#modal').classList.add('on');$('#mNo').focus()}
+function clearInvoice(){
+ const d=defaults();S.items=d.items;S.cust={name:'',phone:'',cc:S.cust.cc};S.ship='';S.disc='';S.dtype='pct';
+ S.meta.inv=nextInv(S.meta.inv);S.meta.date=todayISO();saved=true;
+ $('#modal').classList.remove('on');syncInputs();renderRows();update();toast('New invoice ready')}
 
-/* ---------- wiring ---------- */
-$('addItem').onclick=function(){addRow();update();var r=$('items').lastChild;r.children[0].focus()};
-document.querySelectorAll('input,select').forEach(function(e){e.addEventListener('input',function(){update()});e.addEventListener('change',function(){update()})});
-$('items').addEventListener('input',function(){update()});
-$('bCopy').onclick=copyToClipboard;$('bWa').onclick=sendToWhatsApp;$('bPrint').onclick=printReceipt;
-$('bDl').onclick=function(){toggleDl()};$('dPng').onclick=downloadAsImage;$('dTxt').onclick=downloadAsText;$('dPdf').onclick=downloadAsPDF;
-$('bClear').onclick=showClearModal;$('mNo').onclick=hideModal;
-$('mYes').onclick=function(){hideModal();clearReceipt()};
-$('mDl').onclick=function(){hideModal();toggleDl(true);$('dl').scrollIntoView({behavior:'smooth',block:'center'})};
-$('mPr').onclick=function(){hideModal();printReceipt()};
-document.addEventListener('keydown',function(e){if(e.key==='Escape')hideModal()});
-window.addEventListener('beforeunload',function(e){if(dirty&&hasData()){e.preventDefault();e.returnValue=''}});
-window.addEventListener('afterprint',function(){dirty=false});
-load();update(false);
-})();
+/* ---------- events ---------- */
+document.addEventListener('input',e=>{const el=e.target;
+ if(el.dataset&&el.dataset.b){tpath(S,el.dataset.b,el.type==='checkbox'?el.checked:el.value);if(el.dataset.b==='meta.cur')refreshAmts();saved=false;update()}
+ else if(el.dataset&&el.dataset.f){const i=+el.closest('.row').dataset.i;S.items[i][el.dataset.f]=el.value;saved=false;update()}});
+document.addEventListener('change',e=>{if(e.target.dataset&&e.target.dataset.b&&e.target.type==='checkbox'){tpath(S,e.target.dataset.b,e.target.checked);saved=false;update()}});
+$('#rows').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(!b)return;S.items.splice(+b.dataset.rm,1);if(!S.items.length)S.items.push({d:'',q:'',r:''});saved=false;renderRows();update()});
+$('#add').onclick=()=>{S.items.push({d:'',q:'',r:''});renderRows();update();const r=$$('#rows .row');r[r.length-1].querySelector('input').focus()};
+$('#bSend').onclick=sendToWhatsApp;$('#bCopy').onclick=()=>copyToClipboard(formatWhatsAppText());
+$('#bA4').onclick=printA4;$('#bTh').onclick=printThermal;
+$('#dImg').onclick=downloadAsImage;$('#dTxt').onclick=downloadAsText;$('#dPdf').onclick=downloadAsPDF;
+$('#bClear').onclick=showClearModal;$('#mNo').onclick=()=>$('#modal').classList.remove('on');
+$('#mYes').onclick=clearInvoice;$('#mDl').onclick=downloadAsImage;$('#mPr').onclick=()=>{$('#modal').classList.remove('on');printA4()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#modal').classList.remove('on')});
+$$('.tabs button').forEach(b=>b.onclick=()=>{$$('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$$('.pane').forEach(p=>p.classList.toggle('on',p.id==='p-'+b.dataset.t))});
+$('#fab').onclick=()=>$('#preview').scrollIntoView({behavior:'smooth'});
+window.addEventListener('beforeunload',e=>{if(hasData()&&!saved){e.preventDefault();e.returnValue=''}});
+
+/* ---------- init ---------- */
+S=loadState();syncInputs();renderRows();update();
 </script>
 </body>
 </html>
