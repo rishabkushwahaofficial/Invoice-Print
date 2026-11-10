@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhatsApp Monospace Receipt &amp; Invoice Formatter</title>
+<style>
+:root{--bg:#f3f1ea;--card:#fff;--tx:#1b2a26;--mu:#5d6b66;--bd:#d9dfdb;--g:#25D366;--gd:#075E54;--bub:#d9fdd3;--chat:#efe7da;--warn:#fff3cd;--warnt:#664d03;--inp:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#10181a;--card:#1a2528;--tx:#e6ecea;--mu:#9bb0aa;--bd:#2f4045;--bub:#005c4b;--chat:#0b141a;--warn:#3a2f0b;--warnt:#ffd86b;--inp:#10181a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:var(--gd);color:#fff;padding:18px 16px}
+header h1{margin:0;font-size:1.3rem}header p{margin:4px 0 0;opacity:.85;font-size:.95rem}
+main{max-width:1100px;margin:0 auto;padding:14px}
+.grid{display:grid;gap:14px}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr;align-items:start}.sticky{position:sticky;top:12px}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px}
+h2{font-size:1.1rem;margin:0 0 10px}
+label{display:block;font-size:.85rem;color:var(--mu);margin:8px 0 3px}
+input,select{width:100%;min-height:44px;padding:8px 10px;border:1px solid var(--bd);border-radius:10px;background:var(--inp);color:var(--tx);font:inherit}
+input:focus,select:focus,button:focus-visible{outline:3px solid var(--g);outline-offset:1px}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row{display:grid;grid-template-columns:1fr 64px 84px 44px;gap:6px;margin-bottom:6px}
+.row button{padding:0}
+.chk{display:flex;align-items:center;gap:8px;margin:8px 0}.chk input{width:22px;height:22px;min-height:0}.chk label{margin:0;color:var(--tx)}
+button{min-height:44px;padding:8px 14px;border:0;border-radius:10px;background:var(--g);color:#052e1f;font:600 1rem inherit;font-family:inherit;cursor:pointer}
+button.sec{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+button.red{background:#d93025;color:#fff}button.x{background:transparent;color:#d93025;border:1px solid var(--bd)}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.acts .full{grid-column:1/-1}
+.warn{background:var(--warn);color:var(--warnt);border:2px solid #f0ad00;border-radius:10px;padding:10px 12px;margin-top:12px;font-weight:600;font-size:.92rem}
+.info{background:var(--bub);border-radius:10px;padding:8px 12px;font-size:.88rem;margin-bottom:10px}
+.chat{background:var(--chat);border-radius:12px;padding:14px;overflow-x:auto}
+.bub{display:inline-block;background:var(--bub);border-radius:10px 10px 10px 2px;padding:8px 10px;box-shadow:0 1px 1px rgba(0,0,0,.2)}
+pre{margin:0;font:14px/1.35 "Courier New",Courier,monospace;white-space:pre;color:var(--tx)}
+#dl{display:none;margin-top:8px}#dl.open{display:grid;grid-template-columns:1fr;gap:8px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 18px;border-radius:24px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:20}.toast.show{opacity:1}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}.ov.show{display:flex}
+.modal{background:var(--card);border-radius:14px;padding:18px;max-width:420px;width:100%}.modal .acts{grid-template-columns:1fr}
+.how p,.how li{max-width:75ch}.note{background:var(--warn);color:var(--warnt);border-left:5px solid #f0ad00;padding:10px 14px;border-radius:8px;font-weight:600}
+details{border-bottom:1px solid var(--bd);padding:8px 0}summary{cursor:pointer;font-weight:600}
+#printArea{display:none}
+@media print{#app{display:none!important}#printArea{display:block!important;background:#fff;color:#000;margin:0 auto}#printArea pre{color:#000;font-family:"Courier New",Courier,monospace}body{background:#fff}}
+</style>
+<style id="pageRule"></style>
+</head>
+<body>
+<div id="app">
+<header><h1>WhatsApp Monospace Receipt &amp; Invoice Formatter</h1><p>Make perfectly aligned bills for WhatsApp, print, or download.</p></header>
+<main>
+<div class="grid">
+<section class="card" aria-label="Bill details">
+<h2>Bill details</h2>
+<label for="shop">Shop name (optional)</label><input id="shop" maxlength="40" placeholder="My Shop Name">
+<div class="r2"><div><label for="inv">Invoice / bill number</label><input id="inv" placeholder="INV-001"></div>
+<div><label for="date">Date</label><input id="date" type="date"></div></div>
+<div class="chk"><input type="checkbox" id="showInv" checked><label for="showInv">Show invoice number on bill</label></div>
+<div class="r2"><div><label for="cust">Customer name (optional)</label><input id="cust" placeholder="Rahul"></div>
+<div><label for="phone">Customer phone (optional)</label><input id="phone" inputmode="tel" placeholder="9876543210"></div></div>
+<div class="r2"><div><label for="cc">Default country code</label><input id="cc" inputmode="numeric" value="91"></div>
+<div><label for="cur">Currency prefix</label><input id="cur" value="Rs." maxlength="5"></div></div>
+<h2 style="margin-top:16px">Items</h2>
+<div id="items"></div>
+<button class="sec" id="addItem" type="button" style="width:100%" aria-label="Add item">➕ Add Item</button>
+<div class="r2"><div><label for="deliv">Delivery charge</label><input id="deliv" inputmode="decimal" value="0"></div>
+<div><label for="disc">Discount</label><input id="disc" inputmode="decimal" value="0"></div></div>
+<label for="discType">Discount type</label><select id="discType"><option value="flat">Flat amount</option><option value="pct">Percentage (%)</option></select>
+<label for="foot">Thank-you message</label><input id="foot" maxlength="30" value="Thank you for ordering!">
+</section>
+
+<section class="card sticky" aria-label="Preview and actions">
+<h2>Live preview</h2>
+<div class="info">Triple backticks make WhatsApp show text in monospace so columns stay aligned.</div>
+<div class="chat"><div class="bub"><pre id="preview" aria-live="polite"></pre></div></div>
+<div class="warn" role="alert">⚠️ IMPORTANT: This bill cannot be recovered once cleared! Please Download or Print your bill before clearing it or closing this page. After you clear it, the bill will be gone permanently.</div>
+<div class="acts">
+<button id="bCopy" type="button" aria-label="Copy text">📋 Copy Text</button>
+<button id="bWa" type="button" aria-label="Send on WhatsApp">💬 Send on WhatsApp</button>
+<button id="bPrint" class="sec" type="button" aria-label="Print bill">🖨️ Print Bill</button>
+<button id="bDl" class="sec" type="button" aria-label="Download bill options" aria-expanded="false">⬇️ Download Bill</button>
+</div>
+<div id="dl"><button class="sec" id="dPng" type="button">🖼️ Download as Image (PNG)</button><button class="sec" id="dTxt" type="button">📄 Download as Text (.txt)</button><button class="sec" id="dPdf" type="button">📕 Download as PDF</button></div>
+<label for="paper">Paper size for printing</label>
+<select id="paper"><option value="58">58mm (thermal)</option><option value="80" selected>80mm (thermal)</option><option value="a4">A4</option></select>
+<div class="acts"><button id="bClear" class="red full" type="button" aria-label="Clear and start a new receipt">🗑️ Clear / New Receipt</button></div>
+</section>
+</div>
+
+<section class="card how" style="margin-top:14px" aria-label="How to use">
+<h2>How Does This Tool Work? (How to Use)</h2>
+<p><b>Why normal spaces do not align in WhatsApp.</b> WhatsApp normally uses a proportional font, where every letter has a different width. An "i" is narrow and an "m" is wide, so ten spaces never line up the same way on two different lines. Text wrapped in triple backticks (```) switches WhatsApp to a monospace font, where every character is exactly the same width. This tool pads each column to a fixed number of characters, so inside the backticks the table looks straight and neat.</p>
+<ol>
+<li><b>Step 1 – Shop and customer.</b> Type your shop name once; it is remembered. The invoice number is editable: type any number or text such as INV-001 or 1025, or keep the suggested next number. Turn off "Show invoice number on bill" if you do not want it printed. Customer name and phone are optional, but a phone number lets you send the bill straight to that customer.</li>
+<li><b>Step 2 – Items.</b> Each row has an item name, a quantity, and a rate (price for one unit). Tap "Add Item" to add a new row. Tap the X button to remove a row; at least one row always stays. Rows with no item name are ignored.</li>
+<li><b>Step 3 – Delivery and discount.</b> Enter a delivery charge if you have one. Enter a discount and choose whether it is a flat amount or a percentage. The total is: subtotal (quantity × rate for every item) minus the discount, plus delivery. A discount can never be more than the subtotal, and a negative discount is treated as zero.</li>
+<li><b>Step 4 – Live preview.</b> The preview updates as you type. The width is fixed at 30 characters so every line fits a standard mobile screen without wrapping. Long item names continue on the next line.</li>
+<li><b>Step 5 – Copy or send.</b> Tap "Copy Text" and paste into any WhatsApp chat; the backticks are included automatically, so do not edit them. Or tap "Send on WhatsApp". If a phone number is entered, that customer's chat opens directly (a 10-digit number gets the country code added). If not, WhatsApp lets you choose a contact.</li>
+<li><b>Step 6 – Print.</b> Tap "Print Bill" to print only the receipt, in a black monospace font with no backticks. Choose 58mm, 80mm, or A4 first. To save a PDF, pick "Save as PDF" as the printer in the print dialog.</li>
+<li><b>Step 7 – Download.</b> "Download Bill" lets you save a sharp PNG image (great for WhatsApp), a plain text file, or a PDF (through the print dialog). Files are named Invoice-number-customer-date.</li>
+<li><b>Step 8 – Clear / New Receipt.</b> Clears the items, customer, discount and delivery, keeps your shop name, and moves the invoice number forward by one. You are asked to confirm first.</li>
+</ol>
+<p class="note">Important Note: This bill cannot be recovered once cleared, so please Download or Print it before clearing. If you clear your browser data or switch to a different device, old bills will not be available.</p>
+<h2 style="margin-top:16px">FAQ</h2>
+<details><summary>Is my data saved on the internet?</summary><p>No, everything stays in your own browser. There is no server.</p></details>
+<details><summary>Will this work offline?</summary><p>Yes, once the page is saved or loaded, it works without internet.</p></details>
+<details><summary>Why should I avoid emojis in the bill?</summary><p>Emojis are wider than normal characters and break the column alignment. This tool removes them from the receipt.</p></details>
+<details><summary>Why does the alignment look wrong in WhatsApp?</summary><p>Make sure the triple backticks at the start and end of the message were not removed or edited, and that you copied the full text.</p></details>
+</section>
+</main>
+</div>
+
+<div id="printArea"><pre id="printPre"></pre></div>
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="modal">
+<p id="mt"><b>⚠️ This bill cannot be recovered after clearing. Have you already downloaded or printed it?</b></p>
+<div class="acts"><button id="mDl" class="sec" type="button">Download First</button><button id="mPr" class="sec" type="button">Print First</button><button id="mYes" class="red" type="button">Yes, Clear Anyway</button><button id="mNo" class="sec" type="button">Cancel</button></div>
+</div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+var W=30,NW=16,QW=4,AW=10,KEY='wmrf_state',SHOP='wmrf_shop',LAST='wmrf_lastInv';
+var $=function(id){return document.getElementById(id)};
+var dirty=false;
+
+/* ---------- helpers ---------- */
+function padEnd(s,n){return String(s).padEnd(n,' ')}
+function padStart(s,n){return String(s).padStart(n,' ')}
+function clean(s){return String(s==null?'':s).replace(/[^\x20-\x7E]/g,'').replace(/\s+/g,' ').trim()}
+function num(v){var n=parseFloat(v);return isFinite(n)?n:0}
+function fmtN(n){return (Math.round(n*100)/100).toFixed(2).replace(/\.00$/,'')}
+function center(s){s=s.slice(0,W);return ' '.repeat(Math.floor((W-s.length)/2))+s}
+function line(l,r){var sp=W-l.length-r.length;return sp<1?l+' '+r:l+' '.repeat(sp)+r}
+var SEP='-'.repeat(W);
+/* wrap text into chunks of n chars, breaking at spaces when possible */
+function wrapText(s,n){var out=[];s=s.trim();while(s.length>n){var c=s.lastIndexOf(' ',n);if(c<=0)c=n;out.push(s.slice(0,c).trimEnd());s=s.slice(c).trimStart()}out.push(s);return out}
+function fmtDate(v){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v||'');if(!m)return clean(v);
+ return m[3]+'-'+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m[2]-1]+'-'+m[1]}
+function todayISO(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function nextInv(s){s=String(s||'').trim();if(!s)return 'INV-001';
+ var m=/(\d+)(?!.*\d)/.exec(s);if(!m)return s+'-1';
+ var n=String(+m[1]+1).padStart(m[1].length,'0');return s.slice(0,m.index)+n+s.slice(m.index+m[1].length)}
+
+/* ---------- items UI ---------- */
+function addRow(name,qty,price){
+ var d=document.createElement('div');d.className='row';
+ d.innerHTML='<input class="in" placeholder="Item name" aria-label="Item name"><input class="iq" inputmode="decimal" aria-label="Quantity" placeholder="Qty"><input class="ip" inputmode="decimal" aria-label="Rate" placeholder="Rate"><button type="button" class="x" aria-label="Remove item">✕</button>';
+ d.children[0].value=name||'';d.children[1].value=qty==null?'1':qty;d.children[2].value=price||'';
+ d.children[3].onclick=function(){if($('items').children.length>1){d.remove();update()}else{d.children[0].value='';d.children[1].value='1';d.children[2].value='';update()}};
+ $('items').appendChild(d)}
+function getItems(){return Array.prototype.map.call($('items').children,function(r){return{name:r.children[0].value,qty:r.children[1].value,price:r.children[2].value}})}
+
+/* ---------- calculations ---------- */
+function calculateTotals(items,disc,type,deliv){
+ var sub=0,rows=[];
+ items.forEach(function(it){var n=clean(it.name);if(!n)return;var q=Math.max(0,num(it.qty)),p=Math.max(0,num(it.price));var a=q*p;sub+=a;rows.push({name:n,qty:q,amt:a})});
+ var d=Math.max(0,num(disc));if(type==='pct')d=sub*Math.min(d,100)/100;d=Math.min(d,sub);
+ var dv=Math.max(0,num(deliv));
+ return{rows:rows,sub:sub,disc:d,deliv:dv,total:Math.max(0,sub-d+dv)}}
+
+/* ---------- receipt text ---------- */
+function formatReceipt(withTicks){
+ var cur=clean($('cur').value),t=calculateTotals(getItems(),$('disc').value,$('discType').value,$('deliv').value);
+ var M=function(n){return cur+fmtN(n)},L=[];
+ var shop=clean($('shop').value);
+ if(shop){wrapText(shop.toUpperCase(),W).forEach(function(s){L.push(center(s))});L.push(SEP)}
+ var inv=clean($('inv').value);if($('showInv').checked&&inv)L.push(('Invoice No: '+inv).slice(0,W));
+ var c=clean($('cust').value);if(c)wrapText('Customer: '+c,W).forEach(function(s){L.push(s)});
+ var ph=clean($('phone').value);if(ph)L.push(('Phone: '+ph).slice(0,W));
+ var dt=fmtDate($('date').value);if(dt)L.push('Date: '+dt);
+ L.push(SEP,padEnd('ITEM',NW)+padStart('QTY',QW)+padStart('TOTAL',AW),SEP);
+ if(!t.rows.length)L.push(center('(no items yet)'));
+ t.rows.forEach(function(r){var w=wrapText(r.name,NW);
+  L.push(padEnd(w[0],NW)+padStart(fmtN(r.qty),QW)+padStart(M(r.amt),AW));
+  for(var i=1;i<w.length;i++)L.push(w[i])});
+ L.push(SEP,line('Subtotal:',M(t.sub)));
+ if(t.disc>0)L.push(line($('discType').value==='pct'?'Discount ('+fmtN(num($('disc').value))+'%):':'Discount:','-'+M(t.disc)));
+ if(t.deliv>0)L.push(line('Delivery:',M(t.deliv)));
+ L.push(SEP,line('TOTAL PAYABLE:',M(t.total)),SEP);
+ var f=clean($('foot').value);if(f)wrapText(f,W).forEach(function(s){L.push(center(s))});
+ var txt=L.join('\n');return withTicks?'```\n'+txt+'\n```':txt}
+
+/* ---------- state / render ---------- */
+function hasData(){return getItems().some(function(i){return clean(i.name)})}
+function save(){try{
+ var s={inv:$('inv').value,showInv:$('showInv').checked,cust:$('cust').value,phone:$('phone').value,cc:$('cc').value,cur:$('cur').value,date:$('date').value,deliv:$('deliv').value,disc:$('disc').value,discType:$('discType').value,foot:$('foot').value,paper:$('paper').value,items:getItems()};
+ localStorage.setItem(KEY,JSON.stringify(s));localStorage.setItem(SHOP,$('shop').value);localStorage.setItem(LAST,$('inv').value)}catch(e){}}
+function load(){var s=null;try{s=JSON.parse(localStorage.getItem(KEY));$('shop').value=localStorage.getItem(SHOP)||''}catch(e){}
+ if(s){['inv','cust','phone','cc','cur','date','deliv','disc','discType','foot','paper'].forEach(function(k){if(s[k]!=null)$(k).value=s[k]});$('showInv').checked=s.showInv!==false;
+  (s.items&&s.items.length?s.items:[{}]).forEach(function(i){addRow(i.name,i.qty,i.price)})}
+ else addRow();
+ if(!$('date').value)$('date').value=todayISO();
+ if(!$('inv').value)$('inv').value='INV-001'}
+function applyPaper(){var p=$('paper').value,w=p==='a4'?'90mm':p+'mm',fs=p==='58'?'8pt':p==='80'?'11pt':'14pt';
+ $('pageRule').textContent='@page{size:'+(p==='a4'?'A4':p+'mm auto')+';margin:'+(p==='a4'?'15mm':'2mm')+'}@media print{#printArea{width:'+w+'}#printPre{font-size:'+fs+';line-height:1.3}}'}
+function update(markDirty){$('preview').textContent=formatReceipt(false);$('printPre').textContent=formatReceipt(false);applyPaper();save();
+ if(markDirty!==false)dirty=true}
+
+/* ---------- toast ---------- */
+var tt;function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('show')},2000)}
+
+/* ---------- actions ---------- */
+function copyToClipboard(){var txt=formatReceipt(true);
+ function fb(){var a=document.createElement('textarea');a.value=txt;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}a.remove();toast(ok?'Copied!':'Copy failed. Please select the text manually.')}
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){toast('Copied!')},fb);else fb()}
+function sendToWhatsApp(){var d=$('phone').value.replace(/\D/g,''),cc=$('cc').value.replace(/\D/g,'')||'91';
+ if(d.length===10)d=cc+d;
+ window.open('https://wa.me/'+d+'?text='+encodeURIComponent(formatReceipt(true)),'_blank','noopener')}
+function printReceipt(){update(false);dirty=false;window.print()}
+function fileBase(){var p=function(s){return clean(s).replace(/[^A-Za-z0-9._-]+/g,'_').replace(/^_+|_+$/g,'')};
+ return ['Invoice',p($('inv').value)||'NA',p($('cust').value),p(fmtDate($('date').value))].filter(Boolean).join('-')}
+function saveBlobUrl(url,name){var a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove()}
+function downloadAsText(){var u=URL.createObjectURL(new Blob([formatReceipt(false)],{type:'text/plain'}));saveBlobUrl(u,fileBase()+'.txt');setTimeout(function(){URL.revokeObjectURL(u)},1000);dirty=false;toast('Text file downloaded')}
+function downloadAsImage(){var lines=formatReceipt(false).split('\n'),fs=18,lh=24,pad=24,sc=Math.max(2,window.devicePixelRatio||1),font=fs+'px "Courier New",Courier,monospace';
+ var c=document.createElement('canvas'),x=c.getContext('2d');x.font=font;var cw=x.measureText('M').width,w=Math.ceil(cw*W+pad*2),h=lines.length*lh+pad*2;
+ c.width=w*sc;c.height=h*sc;x=c.getContext('2d');x.scale(sc,sc);x.fillStyle='#fff';x.fillRect(0,0,w,h);x.fillStyle='#000';x.font=font;x.textBaseline='top';
+ lines.forEach(function(l,i){x.fillText(l,pad,pad+i*lh)});
+ saveBlobUrl(c.toDataURL('image/png'),fileBase()+'.png');dirty=false;toast('Image downloaded')}
+function downloadAsPDF(){toast('Choose "Save as PDF" in the print dialog');setTimeout(printReceipt,400)}
+function toggleDl(open){var d=$('dl');var o=open===undefined?!d.classList.contains('open'):open;d.classList.toggle('open',o);$('bDl').setAttribute('aria-expanded',o)}
+function showClearModal(){$('ov').classList.add('show');$('mNo').focus()}
+function hideModal(){$('ov').classList.remove('show')}
+function clearReceipt(){var next=nextInv($('inv').value);$('items').innerHTML='';addRow();
+ ['cust','phone'].forEach(function(k){$(k).value=''});$('deliv').value='0';$('disc').value='0';$('discType').value='flat';
+ $('inv').value=next;$('date').value=todayISO();dirty=false;update(false);toast('New receipt ready')}
+
+/* ---------- wiring ---------- */
+$('addItem').onclick=function(){addRow();update();var r=$('items').lastChild;r.children[0].focus()};
+document.querySelectorAll('input,select').forEach(function(e){e.addEventListener('input',function(){update()});e.addEventListener('change',function(){update()})});
+$('items').addEventListener('input',function(){update()});
+$('bCopy').onclick=copyToClipboard;$('bWa').onclick=sendToWhatsApp;$('bPrint').onclick=printReceipt;
+$('bDl').onclick=function(){toggleDl()};$('dPng').onclick=downloadAsImage;$('dTxt').onclick=downloadAsText;$('dPdf').onclick=downloadAsPDF;
+$('bClear').onclick=showClearModal;$('mNo').onclick=hideModal;
+$('mYes').onclick=function(){hideModal();clearReceipt()};
+$('mDl').onclick=function(){hideModal();toggleDl(true);$('dl').scrollIntoView({behavior:'smooth',block:'center'})};
+$('mPr').onclick=function(){hideModal();printReceipt()};
+document.addEventListener('keydown',function(e){if(e.key==='Escape')hideModal()});
+window.addEventListener('beforeunload',function(e){if(dirty&&hasData()){e.preventDefault();e.returnValue=''}});
+window.addEventListener('afterprint',function(){dirty=false});
+load();update(false);
+})();
+</script>
+</body>
+</html>
