@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Free Invoice Generator – No Login, 100% Free</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
 <meta name="description" content="Create clean PDF, thermal slip, or WhatsApp invoices in 30 seconds. No login, 100% free, runs privately in your browser.">
 <meta name="theme-color" content="#075E54">
 <meta property="og:title" content="Free Invoice Generator – No Login, 100% Free">
@@ -14,24 +14,19 @@
 :root{--g:#25D366;--gd:#075E54;--bg:#f1f5f2;--card:#fff;--tx:#14211c;--mu:#5b6b64;--bd:#d3ded8;--in:#fff;--warn:#fff3cd;--warnt:#664d03;--chat:#e5ddd5;--bub:#dcf8c6}
 @media(prefers-color-scheme:dark){:root{--bg:#0d1411;--card:#16211c;--tx:#e6eee9;--mu:#9bada5;--bd:#2b3b34;--in:#0f1814;--warn:#3a2f0b;--warnt:#ffe08a;--chat:#0b141a;--bub:#005c4b}}
 *{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
 body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 header{background:var(--gd);color:#fff;padding:22px 16px 16px;text-align:center}
 h1{margin:0;font-size:clamp(1.3rem,4.5vw,2rem);line-height:1.2}
 .tag{margin:6px 0 12px;opacity:.9}
 .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .badges span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);padding:5px 12px;border-radius:99px;font-size:.85rem}
-.ad-box{text-align:center;margin:14px auto;width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center}
-@media(max-width:750px){
-  .ad-728{height:55px}
-  .ad-728 iframe{transform:scale(0.47);transform-origin:center center}
-}
-@media(max-width:500px){
-  .ad-468{height:50px}
-  .ad-468 iframe{transform:scale(0.72);transform-origin:center center}
-}
-@media(max-width:340px){
-  .ad-300{height:220px}
-  .ad-300 iframe{transform:scale(0.88);transform-origin:center center}
+.ad-slot{text-align:center;margin:14px auto;width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center}
+.side-ad{display:none}
+@media(min-width:1580px){
+  .side-ad{display:block;position:fixed;top:90px;z-index:10}
+  .side-left{left:10px}
+  .side-right{right:10px}
 }
 main{max-width:1240px;margin:0 auto;padding:16px;display:grid;gap:16px;grid-template-columns:1fr}
 @media(min-width:960px){main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}.right{position:sticky;top:12px}.fab{display:none!important}}
@@ -91,7 +86,7 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
 .note{background:var(--warn);color:var(--warnt);border:2px solid #e0a800;border-radius:12px;padding:14px;margin:16px 0}
 #printA4,#printTh{display:none}
 @media print{
- #app,.fab,#modal,#toast,.ad-box,iframe{display:none!important}
+ #app,.fab,#modal,#toast,.ad-slot,.side-ad,iframe{display:none!important}
  html,body{background:#fff!important;color:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
  body.pm-a4 #printA4{display:block}
  body.pm-a4 #printA4 .a4{padding:0;min-width:0}
@@ -102,25 +97,21 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
 </head>
 <body>
 <div id="app">
+
+<!-- Desktop Left Skyscraper (160x600) -->
+<div class="side-ad side-left" id="ad-side-left"></div>
+
+<!-- Desktop Right Skyscraper (160x300) -->
+<div class="side-ad side-right" id="ad-side-right"></div>
+
 <header>
  <h1>Free Invoice Generator – No Login, 100% Free</h1>
  <p class="tag">Create clean PDF, thermal slips, or WhatsApp invoices in 30 seconds.</p>
  <div class="badges"><span>⚡ No Account Needed</span><span>🔒 100% Private (Runs in Browser)</span><span>📱 WhatsApp Ready</span></div>
 </header>
 
-<!-- Banner 1 -->
-<div class="ad-box ad-728">
-<script>
-  atOptions = {
-    'key' : 'e1529866e8d04dc07d5f47ff3cf3d9b4',
-    'format' : 'iframe',
-    'height' : 90,
-    'width' : 728,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highrevenueformat.com/e1529866e8d04dc07d5f47ff3cf3d9b4/invoke.js"></script>
-</div>
+<!-- Top Responsive Banner (728x90 Desktop / 320x50 Mobile) -->
+<div class="ad-slot" id="ad-top"></div>
 
 <main>
 <section class="left">
@@ -157,19 +148,8 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
   <div style="margin-top:12px" id="sum"></div>
  </div>
 
- <!-- Banner 2 -->
- <div class="ad-box ad-300">
- <script>
-   atOptions = {
-     'key' : '5c09645210f63824288e83caca1886ac',
-     'format' : 'iframe',
-     'height' : 250,
-     'width' : 300,
-     'params' : {}
-   };
- </script>
- <script src="https://bauval.org/22/5c09645210f63824288e83caca1886ac"></script>
- </div>
+ <!-- Middle Banner (300x250 - Fits Mobile & Desktop) -->
+ <div class="ad-slot" id="ad-mid"></div>
 
  <div class="card"><h2>Send, print or download</h2>
   <div class="warn" role="alert">⚠️ IMPORTANT: This bill cannot be recovered once cleared! Please Download or Print your bill before clearing it or closing this page. After you clear it, the bill will be gone permanently.</div>
@@ -193,19 +173,8 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
   <div class="pane" id="p-th"><div class="sheet"><div class="th"><pre id="pvTh"></pre></div></div></div>
  </div>
 
- <!-- Banner 3 -->
- <div class="ad-box ad-468">
- <script>
-   atOptions = {
-     'key' : 'f81fa5f0cc37100640241b3e3e186cd8',
-     'format' : 'iframe',
-     'height' : 60,
-     'width' : 468,
-     'params' : {}
-   };
- </script>
- <script src="https://www.highrevenueformat.com/f81fa5f0cc37100640241b3e3e186cd8/invoke.js"></script>
- </div>
+ <!-- Bottom Responsive Banner (468x60 Desktop / 320x50 Mobile) -->
+ <div class="ad-slot" id="ad-bottom"></div>
 </section>
 </main>
 <button class="b g fab" id="fab" type="button" aria-label="Go to preview">👁️ Preview</button>
@@ -247,6 +216,63 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const KEY='free_invoice_gen_v1';
 const SMARTLINK_URL='[https://araplhn.org/4/7d2f9c3af77baefc5b98c11788ac34ba](https://araplhn.org/4/7d2f9c3af77baefc5b98c11788ac34ba)';
 let S, saved=true;
+
+/* ---------- Responsive Ad Loader (Sequential Queue) ---------- */
+(function loadResponsiveAds(){
+  const w = window.innerWidth;
+  const queue = [];
+
+  if(w >= 768){
+    // Desktop Top: 728x90
+    queue.push({el:'ad-top', key:'e1529866e8d04dc07d5f47ff3cf3d9b4', w:728, h:90, src:'[https://gigglehiccup.com/e1529866e8d04dc07d5f47ff3cf3d9b4/invoke.js](https://gigglehiccup.com/e1529866e8d04dc07d5f47ff3cf3d9b4/invoke.js)'});
+  } else {
+    // Mobile Top: 320x50
+    queue.push({el:'ad-top', key:'c64abf865a4d6a6af6a5270317661e30', w:320, h:50, src:'[https://bauval.org/22/c64abf865a4d6a6af6a5270317661e30](https://bauval.org/22/c64abf865a4d6a6af6a5270317661e30)'});
+  }
+
+  // Middle (Both Mobile & Desktop): 300x250
+  queue.push({el:'ad-mid', key:'5c09645210f63824288e83caca1886ac', w:300, h:250, src:'[https://bauval.org/22/5c09645210f63824288e83caca1886ac](https://bauval.org/22/5c09645210f63824288e83caca1886ac)'});
+
+  if(w >= 520){
+    // Desktop/Tablet Bottom: 468x60
+    queue.push({el:'ad-bottom', key:'f81fa5f0cc37100640241b3e3e186cd8', w:468, h:60, src:'[https://gigglehiccup.com/f81fa5f0cc37100640241b3e3e186cd8/invoke.js](https://gigglehiccup.com/f81fa5f0cc37100640241b3e3e186cd8/invoke.js)'});
+  } else {
+    // Mobile Bottom: 320x50
+    queue.push({el:'ad-bottom', key:'c64abf865a4d6a6af6a5270317661e30', w:320, h:50, src:'[https://bauval.org/22/c64abf865a4d6a6af6a5270317661e30](https://bauval.org/22/c64abf865a4d6a6af6a5270317661e30)'});
+  }
+
+  // Wide Desktop Side Skyscrapers (160x600 & 160x300)
+  if(w >= 1580){
+    queue.push({el:'ad-side-left', key:'5811fc93dab10e33356700feaba3877b', w:160, h:600, src:'[https://gigglehiccup.com/5811fc93dab10e33356700feaba3877b/invoke.js](https://gigglehiccup.com/5811fc93dab10e33356700feaba3877b/invoke.js)'});
+    queue.push({el:'ad-side-right', key:'008d44c753dba7a3e3b5af964508674a', w:160, h:300, src:'[https://bauval.org/22/008d44c753dba7a3e3b5af964508674a](https://bauval.org/22/008d44c753dba7a3e3b5af964508674a)'});
+  }
+
+  function next(idx){
+    if(idx >= queue.length) return;
+    const item = queue[idx];
+    const box = document.getElementById(item.el);
+    if(!box){ next(idx+1); return; }
+
+    const ifr = document.createElement('iframe');
+    ifr.width = item.w;
+    ifr.height = item.h;
+    ifr.frameBorder = '0';
+    ifr.scrolling = 'no';
+    ifr.style.cssText = `border:0;width:${item.w}px;height:${item.h}px;max-width:100%;display:block;margin:0 auto;`;
+    box.appendChild(ifr);
+
+    const doc = ifr.contentWindow.document;
+    doc.open();
+    doc.write(`<!DOCTYPE html><html><body style="margin:0;padding:0;overflow:hidden;background:transparent;">
+      <script>atOptions={'key':'${item.key}','format':'iframe','height':${item.h},'width':${item.w},'params':{}};<\/script>
+      <script src="${item.src}"><\/script>
+    </body></html>`);
+    doc.close();
+
+    setTimeout(() => next(idx+1), 250);
+  }
+  next(0);
+})();
 
 /* ---------- helpers ---------- */
 const num=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?n:0};
@@ -396,5 +422,8 @@ window.addEventListener('beforeunload',e=>{if(hasData()&&!saved){e.preventDefaul
 /* ---------- init ---------- */
 S=loadState();syncInputs();renderRows();update();
 </script>
+
+<!-- Social Bar Ad -->
+<script data-cfasync="false" src="[https://bauval.org/14/5a16fdc9dcc84027333fff41d77377a3](https://bauval.org/14/5a16fdc9dcc84027333fff41d77377a3)"></script>
 </body>
 </html>
