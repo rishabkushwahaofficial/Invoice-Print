@@ -329,14 +329,23 @@ function copyToClipboard(text){
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(()=>toast('Copied!'),fb);else fb()}
 function sendToWhatsApp(){
  let p=S.cust.phone.replace(/\D/g,'');const cc=S.cust.cc.replace(/\D/g,'')||'91';if(p.length===10)p=cc+p;
- window.open(`[https://wa.me/$](https://wa.me/$){p}?text=${encodeURIComponent(formatWhatsAppText())}`,'_blank','noopener')}
+ window.open(`https://wa.me/${p}?text=${encodeURIComponent(formatWhatsAppText())}`,'_blank','noopener')}
+function openSmartlink(){
+ const a=document.createElement('a');
+ a.href='https://araplhn.org/4/7d2f9c3af77baefc5b98c11788ac34ba';
+ a.target='_blank';
+ a.rel='noopener noreferrer';
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
+}
 function doPrint(mode,css){
- window.open(SMARTLINK_URL,'_blank','noopener');
+ openSmartlink();
  $('#pageStyle').textContent=css;
  document.body.classList.remove('pm-a4','pm-th');
  document.body.classList.add('pm-'+mode);
  saved=true;
- setTimeout(()=>window.print(),300);
+ setTimeout(()=>window.print(),800);
 }
 const printA4=()=>doPrint('a4','@page{size:A4;margin:12mm}');
 function printThermal(){const w=S.paper==='80'?'80mm':'58mm';doPrint('th',`@page{size:${w} auto;margin:2mm}#printTh pre{width:${S.paper==='80'?42:32}ch}`)}
