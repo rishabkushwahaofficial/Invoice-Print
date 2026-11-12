@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Free Invoice Generator – No Login, 100% Free</title>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Create clean PDF, thermal slip, or WhatsApp invoices in 30 seconds. No login, 100% free, runs privately in your browser.">
 <meta name="theme-color" content="#075E54">
 <meta property="og:title" content="Free Invoice Generator – No Login, 100% Free">
@@ -21,13 +21,22 @@ h1{margin:0;font-size:clamp(1.3rem,4.5vw,2rem);line-height:1.2}
 .tag{margin:6px 0 12px;opacity:.9}
 .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .badges span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);padding:5px 12px;border-radius:99px;font-size:.85rem}
-.ad-slot{text-align:center;margin:14px auto;width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center}
-.side-ad{display:none}
-@media(min-width:1580px){
-  .side-ad{display:block;position:fixed;top:90px;z-index:10}
-  .side-left{left:10px}
-  .side-right{right:10px}
+
+/* Ad Visibility Rules */
+.ad-wrap{text-align:center;margin:14px auto;width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center}
+.ad-desk{display:none}
+.ad-mob{display:flex}
+.ad-side{display:none}
+@media(min-width:768px){
+  .ad-desk{display:flex}
+  .ad-mob{display:none}
 }
+@media(min-width:1580px){
+  .ad-side{display:block;position:fixed;top:90px;z-index:10}
+  .ad-left{left:10px}
+  .ad-right{right:10px}
+}
+
 main{max-width:1240px;margin:0 auto;padding:16px;display:grid;gap:16px;grid-template-columns:1fr}
 @media(min-width:960px){main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}.right{position:sticky;top:12px}.fab{display:none!important}}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:16px}
@@ -86,7 +95,7 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
 .note{background:var(--warn);color:var(--warnt);border:2px solid #e0a800;border-radius:12px;padding:14px;margin:16px 0}
 #printA4,#printTh{display:none}
 @media print{
- #app,.fab,#modal,#toast,.ad-slot,.side-ad,iframe{display:none!important}
+ #app,.fab,#modal,#toast,.ad-wrap,.ad-side,iframe{display:none!important}
  html,body{background:#fff!important;color:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
  body.pm-a4 #printA4{display:block}
  body.pm-a4 #printA4 .a4{padding:0;min-width:0}
@@ -99,10 +108,32 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
 <div id="app">
 
 <!-- Desktop Left Skyscraper (160x600) -->
-<div class="side-ad side-left" id="ad-side-left"></div>
+<div class="ad-side ad-left">
+<script>
+  atOptions = {
+    'key' : '5811fc93dab10e33356700feaba3877b',
+    'format' : 'iframe',
+    'height' : 600,
+    'width' : 160,
+    'params' : {}
+  };
+</script>
+<script src="https://gigglehiccup.com/5811fc93dab10e33356700feaba3877b/invoke.js"></script>
+</div>
 
 <!-- Desktop Right Skyscraper (160x300) -->
-<div class="side-ad side-right" id="ad-side-right"></div>
+<div class="ad-side ad-right">
+<script>
+  atOptions = {
+    'key' : '008d44c753dba7a3e3b5af964508674a',
+    'format' : 'iframe',
+    'height' : 300,
+    'width' : 160,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/008d44c753dba7a3e3b5af964508674a"></script>
+</div>
 
 <header>
  <h1>Free Invoice Generator – No Login, 100% Free</h1>
@@ -110,8 +141,33 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
  <div class="badges"><span>⚡ No Account Needed</span><span>🔒 100% Private (Runs in Browser)</span><span>📱 WhatsApp Ready</span></div>
 </header>
 
-<!-- Top Responsive Banner (728x90 Desktop / 320x50 Mobile) -->
-<div class="ad-slot" id="ad-top"></div>
+<!-- TOP AD: Desktop (728x90) -->
+<div class="ad-wrap ad-desk">
+<script>
+  atOptions = {
+    'key' : 'e1529866e8d04dc07d5f47ff3cf3d9b4',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://gigglehiccup.com/e1529866e8d04dc07d5f47ff3cf3d9b4/invoke.js"></script>
+</div>
+
+<!-- TOP AD: Mobile (320x50) -->
+<div class="ad-wrap ad-mob">
+<script>
+  atOptions = {
+    'key' : 'c64abf865a4d6a6af6a5270317661e30',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/c64abf865a4d6a6af6a5270317661e30"></script>
+</div>
 
 <main>
 <section class="left">
@@ -148,8 +204,19 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
   <div style="margin-top:12px" id="sum"></div>
  </div>
 
- <!-- Middle Banner (300x250 - Fits Mobile & Desktop) -->
- <div class="ad-slot" id="ad-mid"></div>
+ <!-- MIDDLE AD: 300x250 (Mobile & Desktop Both) -->
+ <div class="ad-wrap">
+ <script>
+   atOptions = {
+     'key' : '5c09645210f63824288e83caca1886ac',
+     'format' : 'iframe',
+     'height' : 250,
+     'width' : 300,
+     'params' : {}
+   };
+ </script>
+ <script src="https://bauval.org/22/5c09645210f63824288e83caca1886ac"></script>
+ </div>
 
  <div class="card"><h2>Send, print or download</h2>
   <div class="warn" role="alert">⚠️ IMPORTANT: This bill cannot be recovered once cleared! Please Download or Print your bill before clearing it or closing this page. After you clear it, the bill will be gone permanently.</div>
@@ -173,8 +240,33 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
   <div class="pane" id="p-th"><div class="sheet"><div class="th"><pre id="pvTh"></pre></div></div></div>
  </div>
 
- <!-- Bottom Responsive Banner (468x60 Desktop / 320x50 Mobile) -->
- <div class="ad-slot" id="ad-bottom"></div>
+ <!-- BOTTOM AD: Desktop (468x60) -->
+ <div class="ad-wrap ad-desk">
+ <script>
+   atOptions = {
+     'key' : 'f81fa5f0cc37100640241b3e3e186cd8',
+     'format' : 'iframe',
+     'height' : 60,
+     'width' : 468,
+     'params' : {}
+   };
+ </script>
+ <script src="https://gigglehiccup.com/f81fa5f0cc37100640241b3e3e186cd8/invoke.js"></script>
+ </div>
+
+ <!-- BOTTOM AD: Mobile (320x50) -->
+ <div class="ad-wrap ad-mob">
+ <script>
+   atOptions = {
+     'key' : 'c64abf865a4d6a6af6a5270317661e30',
+     'format' : 'iframe',
+     'height' : 50,
+     'width' : 320,
+     'params' : {}
+   };
+ </script>
+ <script src="https://bauval.org/22/c64abf865a4d6a6af6a5270317661e30"></script>
+ </div>
 </section>
 </main>
 <button class="b g fab" id="fab" type="button" aria-label="Go to preview">👁️ Preview</button>
@@ -216,63 +308,6 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const KEY='free_invoice_gen_v1';
 const SMARTLINK_URL='[https://araplhn.org/4/7d2f9c3af77baefc5b98c11788ac34ba](https://araplhn.org/4/7d2f9c3af77baefc5b98c11788ac34ba)';
 let S, saved=true;
-
-/* ---------- Responsive Ad Loader (Sequential Queue) ---------- */
-(function loadResponsiveAds(){
-  const w = window.innerWidth;
-  const queue = [];
-
-  if(w >= 768){
-    // Desktop Top: 728x90
-    queue.push({el:'ad-top', key:'e1529866e8d04dc07d5f47ff3cf3d9b4', w:728, h:90, src:'[https://gigglehiccup.com/e1529866e8d04dc07d5f47ff3cf3d9b4/invoke.js](https://gigglehiccup.com/e1529866e8d04dc07d5f47ff3cf3d9b4/invoke.js)'});
-  } else {
-    // Mobile Top: 320x50
-    queue.push({el:'ad-top', key:'c64abf865a4d6a6af6a5270317661e30', w:320, h:50, src:'[https://bauval.org/22/c64abf865a4d6a6af6a5270317661e30](https://bauval.org/22/c64abf865a4d6a6af6a5270317661e30)'});
-  }
-
-  // Middle (Both Mobile & Desktop): 300x250
-  queue.push({el:'ad-mid', key:'5c09645210f63824288e83caca1886ac', w:300, h:250, src:'[https://bauval.org/22/5c09645210f63824288e83caca1886ac](https://bauval.org/22/5c09645210f63824288e83caca1886ac)'});
-
-  if(w >= 520){
-    // Desktop/Tablet Bottom: 468x60
-    queue.push({el:'ad-bottom', key:'f81fa5f0cc37100640241b3e3e186cd8', w:468, h:60, src:'[https://gigglehiccup.com/f81fa5f0cc37100640241b3e3e186cd8/invoke.js](https://gigglehiccup.com/f81fa5f0cc37100640241b3e3e186cd8/invoke.js)'});
-  } else {
-    // Mobile Bottom: 320x50
-    queue.push({el:'ad-bottom', key:'c64abf865a4d6a6af6a5270317661e30', w:320, h:50, src:'[https://bauval.org/22/c64abf865a4d6a6af6a5270317661e30](https://bauval.org/22/c64abf865a4d6a6af6a5270317661e30)'});
-  }
-
-  // Wide Desktop Side Skyscrapers (160x600 & 160x300)
-  if(w >= 1580){
-    queue.push({el:'ad-side-left', key:'5811fc93dab10e33356700feaba3877b', w:160, h:600, src:'[https://gigglehiccup.com/5811fc93dab10e33356700feaba3877b/invoke.js](https://gigglehiccup.com/5811fc93dab10e33356700feaba3877b/invoke.js)'});
-    queue.push({el:'ad-side-right', key:'008d44c753dba7a3e3b5af964508674a', w:160, h:300, src:'[https://bauval.org/22/008d44c753dba7a3e3b5af964508674a](https://bauval.org/22/008d44c753dba7a3e3b5af964508674a)'});
-  }
-
-  function next(idx){
-    if(idx >= queue.length) return;
-    const item = queue[idx];
-    const box = document.getElementById(item.el);
-    if(!box){ next(idx+1); return; }
-
-    const ifr = document.createElement('iframe');
-    ifr.width = item.w;
-    ifr.height = item.h;
-    ifr.frameBorder = '0';
-    ifr.scrolling = 'no';
-    ifr.style.cssText = `border:0;width:${item.w}px;height:${item.h}px;max-width:100%;display:block;margin:0 auto;`;
-    box.appendChild(ifr);
-
-    const doc = ifr.contentWindow.document;
-    doc.open();
-    doc.write(`<!DOCTYPE html><html><body style="margin:0;padding:0;overflow:hidden;background:transparent;">
-      <script>atOptions={'key':'${item.key}','format':'iframe','height':${item.h},'width':${item.w},'params':{}};<\/script>
-      <script src="${item.src}"><\/script>
-    </body></html>`);
-    doc.close();
-
-    setTimeout(() => next(idx+1), 250);
-  }
-  next(0);
-})();
 
 /* ---------- helpers ---------- */
 const num=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?n:0};
