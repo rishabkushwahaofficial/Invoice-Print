@@ -402,10 +402,10 @@ function copyToClipboard(text){
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(()=>toast('Copied!'),fb);else fb()}
 function sendToWhatsApp(){
  let p=S.cust.phone.replace(/\D/g,'');const cc=S.cust.cc.replace(/\D/g,'')||'91';if(p.length===10)p=cc+p;
- window.open(`[https://wa.me/$](https://wa.me/$){p}?text=${encodeURIComponent(formatWhatsAppText())}`,'_blank','noopener')}
+ window.open('https://wa.me/'+p+'?text='+encodeURIComponent(formatWhatsAppText()),'_blank','noopener')}
 function openSmartlink(){
  const a=document.createElement('a');
- a.href=SMARTLINK_URL;
+ a.href='https://araplhn.org/4/7d2f9c3af77baefc5b98c11788ac34ba';
  a.target='_blank';
  a.rel='noopener noreferrer';
  document.body.appendChild(a);
