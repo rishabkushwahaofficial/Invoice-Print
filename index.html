@@ -21,6 +21,18 @@ h1{margin:0;font-size:clamp(1.3rem,4.5vw,2rem);line-height:1.2}
 .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .badges span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);padding:5px 12px;border-radius:99px;font-size:.85rem}
 .ad-box{text-align:center;margin:14px auto;width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center}
+@media(max-width:750px){
+  .ad-728{height:55px}
+  .ad-728 iframe{transform:scale(0.47);transform-origin:center center}
+}
+@media(max-width:500px){
+  .ad-468{height:50px}
+  .ad-468 iframe{transform:scale(0.72);transform-origin:center center}
+}
+@media(max-width:340px){
+  .ad-300{height:220px}
+  .ad-300 iframe{transform:scale(0.88);transform-origin:center center}
+}
 main{max-width:1240px;margin:0 auto;padding:16px;display:grid;gap:16px;grid-template-columns:1fr}
 @media(min-width:960px){main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}.right{position:sticky;top:12px}.fab{display:none!important}}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:16px}
@@ -97,7 +109,7 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
 </header>
 
 <!-- Banner 1 -->
-<div class="ad-box">
+<div class="ad-box ad-728">
 <script>
   atOptions = {
     'key' : 'e1529866e8d04dc07d5f47ff3cf3d9b4',
@@ -146,7 +158,7 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
  </div>
 
  <!-- Banner 2 -->
- <div class="ad-box">
+ <div class="ad-box ad-300">
  <script>
    atOptions = {
      'key' : '5c09645210f63824288e83caca1886ac',
@@ -182,7 +194,7 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
  </div>
 
  <!-- Banner 3 -->
- <div class="ad-box">
+ <div class="ad-box ad-468">
  <script>
    atOptions = {
      'key' : 'f81fa5f0cc37100640241b3e3e186cd8',
@@ -329,10 +341,10 @@ function copyToClipboard(text){
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(()=>toast('Copied!'),fb);else fb()}
 function sendToWhatsApp(){
  let p=S.cust.phone.replace(/\D/g,'');const cc=S.cust.cc.replace(/\D/g,'')||'91';if(p.length===10)p=cc+p;
- window.open(`https://wa.me/${p}?text=${encodeURIComponent(formatWhatsAppText())}`,'_blank','noopener')}
+ window.open(`[https://wa.me/$](https://wa.me/$){p}?text=${encodeURIComponent(formatWhatsAppText())}`,'_blank','noopener')}
 function openSmartlink(){
  const a=document.createElement('a');
- a.href='https://araplhn.org/4/7d2f9c3af77baefc5b98c11788ac34ba';
+ a.href=SMARTLINK_URL;
  a.target='_blank';
  a.rel='noopener noreferrer';
  document.body.appendChild(a);
