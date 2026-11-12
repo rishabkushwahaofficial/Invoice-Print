@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-</script>
-<script src="https://www.highrevenueformat.com/e1529866e8d04dc07d5f47ff3cf3d9b4/invoke.js"></script>
 <meta charset="utf-8">
 <title>Free Invoice Generator – No Login, 100% Free</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,6 +20,7 @@ h1{margin:0;font-size:clamp(1.3rem,4.5vw,2rem);line-height:1.2}
 .tag{margin:6px 0 12px;opacity:.9}
 .badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .badges span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);padding:5px 12px;border-radius:99px;font-size:.85rem}
+.ad-box{text-align:center;margin:14px auto;width:100%;max-width:100%;overflow:hidden;display:flex;justify-content:center;align-items:center}
 main{max-width:1240px;margin:0 auto;padding:16px;display:grid;gap:16px;grid-template-columns:1fr}
 @media(min-width:960px){main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}.right{position:sticky;top:12px}.fab{display:none!important}}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:16px}
@@ -80,7 +79,7 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
 .note{background:var(--warn);color:var(--warnt);border:2px solid #e0a800;border-radius:12px;padding:14px;margin:16px 0}
 #printA4,#printTh{display:none}
 @media print{
- #app,.fab,#modal,#toast{display:none!important}
+ #app,.fab,#modal,#toast,.ad-box,iframe{display:none!important}
  html,body{background:#fff!important;color:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
  body.pm-a4 #printA4{display:block}
  body.pm-a4 #printA4 .a4{padding:0;min-width:0}
@@ -96,6 +95,21 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
  <p class="tag">Create clean PDF, thermal slips, or WhatsApp invoices in 30 seconds.</p>
  <div class="badges"><span>⚡ No Account Needed</span><span>🔒 100% Private (Runs in Browser)</span><span>📱 WhatsApp Ready</span></div>
 </header>
+
+<!-- Banner 1 -->
+<div class="ad-box">
+<script>
+  atOptions = {
+    'key' : 'e1529866e8d04dc07d5f47ff3cf3d9b4',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highrevenueformat.com/e1529866e8d04dc07d5f47ff3cf3d9b4/invoke.js"></script>
+</div>
+
 <main>
 <section class="left">
  <div class="card"><h2>Business details</h2>
@@ -130,6 +144,21 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
   </div>
   <div style="margin-top:12px" id="sum"></div>
  </div>
+
+ <!-- Banner 2 -->
+ <div class="ad-box">
+ <script>
+   atOptions = {
+     'key' : '5c09645210f63824288e83caca1886ac',
+     'format' : 'iframe',
+     'height' : 250,
+     'width' : 300,
+     'params' : {}
+   };
+ </script>
+ <script src="https://bauval.org/22/5c09645210f63824288e83caca1886ac"></script>
+ </div>
+
  <div class="card"><h2>Send, print or download</h2>
   <div class="warn" role="alert">⚠️ IMPORTANT: This bill cannot be recovered once cleared! Please Download or Print your bill before clearing it or closing this page. After you clear it, the bill will be gone permanently.</div>
   <div class="btns"><button class="b g" id="bSend" type="button" aria-label="Send via WhatsApp">📲 Send via WhatsApp</button><button class="b o" id="bCopy" type="button" aria-label="Copy text">📋 Copy Text</button></div>
@@ -150,6 +179,20 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
   <div class="pane on" id="p-wa"><div class="chat"><div class="bubble"><pre id="pvWa"></pre></div></div></div>
   <div class="pane" id="p-a4"><div class="sheet" id="pvA4"></div></div>
   <div class="pane" id="p-th"><div class="sheet"><div class="th"><pre id="pvTh"></pre></div></div></div>
+ </div>
+
+ <!-- Banner 3 -->
+ <div class="ad-box">
+ <script>
+   atOptions = {
+     'key' : 'f81fa5f0cc37100640241b3e3e186cd8',
+     'format' : 'iframe',
+     'height' : 60,
+     'width' : 468,
+     'params' : {}
+   };
+ </script>
+ <script src="https://www.highrevenueformat.com/f81fa5f0cc37100640241b3e3e186cd8/invoke.js"></script>
  </div>
 </section>
 </main>
@@ -190,6 +233,7 @@ pre{margin:0;font:13px/1.35 "Courier New",Consolas,monospace;white-space:pre}
 'use strict';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const KEY='free_invoice_gen_v1';
+const SMARTLINK_URL='[https://araplhn.org/4/7d2f9c3af77baefc5b98c11788ac34ba](https://araplhn.org/4/7d2f9c3af77baefc5b98c11788ac34ba)';
 let S, saved=true;
 
 /* ---------- helpers ---------- */
@@ -202,7 +246,6 @@ const center=(s,w)=>s.length>=w?s:' '.repeat(Math.floor((w-s.length)/2))+s;
 const pad2=n=>String(n).padStart(2,'0');
 const todayISO=()=>{const d=new Date();return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate())};
 function fmtDate(iso){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(iso||'');if(!m)return iso||'';return m[3]+'-'+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m[2]-1]+'-'+m[1]}
-/* Break text into lines of max w chars: at spaces when possible, hard-split very long words */
 function wrapText(s,w){s=String(s||'').trim();if(!s)return[''];const out=[];let cur='';
  for(let word of s.split(/\s+/)){while(word.length>w){if(cur){out.push(cur);cur=''}out.push(word.slice(0,w));word=word.slice(w)}
   if(!cur)cur=word;else if((cur+' '+word).length<=w)cur+=' '+word;else{out.push(cur);cur=word}}
@@ -286,8 +329,15 @@ function copyToClipboard(text){
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(()=>toast('Copied!'),fb);else fb()}
 function sendToWhatsApp(){
  let p=S.cust.phone.replace(/\D/g,'');const cc=S.cust.cc.replace(/\D/g,'')||'91';if(p.length===10)p=cc+p;
- window.open(`https://wa.me/${p}?text=${encodeURIComponent(formatWhatsAppText())}`,'_blank','noopener')}
-function doPrint(mode,css){$('#pageStyle').textContent=css;document.body.classList.remove('pm-a4','pm-th');document.body.classList.add('pm-'+mode);saved=true;setTimeout(()=>window.print(),60)}
+ window.open(`[https://wa.me/$](https://wa.me/$){p}?text=${encodeURIComponent(formatWhatsAppText())}`,'_blank','noopener')}
+function doPrint(mode,css){
+ window.open(SMARTLINK_URL,'_blank','noopener');
+ $('#pageStyle').textContent=css;
+ document.body.classList.remove('pm-a4','pm-th');
+ document.body.classList.add('pm-'+mode);
+ saved=true;
+ setTimeout(()=>window.print(),300);
+}
 const printA4=()=>doPrint('a4','@page{size:A4;margin:12mm}');
 function printThermal(){const w=S.paper==='80'?'80mm':'58mm';doPrint('th',`@page{size:${w} auto;margin:2mm}#printTh pre{width:${S.paper==='80'?42:32}ch}`)}
 function dl(href,name){const a=document.createElement('a');a.href=href;a.download=name;document.body.appendChild(a);a.click();a.remove();saved=true}
